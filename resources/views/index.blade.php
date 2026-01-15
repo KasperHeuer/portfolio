@@ -1,9 +1,3 @@
-<?php
-$schoolEinde = mktime(0, 0, 0, 6, 28, 2027);
-$huidig = time();
-$einde = $schoolEinde <= $huidig ? '2027' : 'heden';
-?>
-
 <x-layout title="Home">
     <section class="w-full flex flex-col md:flex-row items-center bg-[#1B1B1B] gap-4 md:gap-10 py-10 px-4 md:px-16">
 
@@ -18,41 +12,41 @@ $einde = $schoolEinde <= $huidig ? '2027' : 'heden';
     </section>
 
     <section class="flex flex-col md:flex-row gap-10 mt-16">
-        <!-- Talen -->
         <div class="bg-[#1B1B1B] w-full md:w-1/2 p-4">
-            <h2 class="text-3xl md:text-4xl mb-4">Talen</h2>
+            <x-chapter text="Talen" />
 
-            <div class="flex items-start gap-2">
-                <x-triangle />
-                <p class="text-xl mb-1">Nederlands</p>
+            <div class="flex items-center gap-2">
+                <div class="w-24 md:w-32">
+                    <p class="text-xl mb-0">Nederlands</p>
+                </div>
                 <x-bar skill='7' />
             </div>
 
-            <div class="flex items-start gap-2">
-                <x-triangle />
-                <p class="text-xl mb-1">Engels</p>
+            <div class="flex items-center gap-2 mt-4">
+                <div class="w-24 md:w-32">
+                    <p class="text-xl mb-0">Engels</p>
+                </div>
                 <x-bar skill='8' />
             </div>
         </div>
 
+
+
         <div class="bg-[#1B1B1B] w-full md:w-1/2 p-4">
-            <h2 class="text-3xl md:text-4xl mb-4">Opleiding(en)</h2>
+            <x-chapter text="Opleidingen" />
 
             <div class="space-y-4">
                 <div class="flex items-start gap-2">
-                    <x-triangle class="mt-1" />
                     <div>
                         <h3 class="text-2xl font-semibold">Willem van Oranje College</h3>
                         <p>Mavo (2019-2023)</p>
                     </div>
                 </div>
 
-                <!-- Second education item -->
                 <div class="flex items-start gap-2">
-                    <x-triangle class="mt-1" />
                     <div>
                         <h3 class="text-2xl font-semibold">ROC Tilburg/Yonder</h3>
-                        <p>MBO Niveau 4, Software Development (2023-<?php echo $einde; ?>)</p>
+                        <p>MBO Niveau 4, Software Development (2023-{{ $einde }})</p>
                     </div>
                 </div>
             </div>

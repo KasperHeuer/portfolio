@@ -1,5 +1,6 @@
-<header class="flex flex-col md:flex-row justify-between items-center border-b-2 border-white p-5 md:min-h-[220px] ">
-    <div class="relative md:absolute top-5 md:ml-4 w-[300px]">
+<header class="flex flex-col md:flex-row justify-between items-center border-b-2 border-white p-5 md:min-h-[220px]">
+    <!-- logo container — mobile: centered small, desktop: positioned larger -->
+    <div class="relative w-48 md:w-[300px] mx-auto md:mx-0 md:absolute md:top-5 md:ml-4">
         <svg viewBox="0 0 550 300" preserveAspectRatio="xMidYMid meet" class="w-full h-auto stroke-silver fill-none">
             <path d="M 7.5 30 L 7.5 275" class="binnen" />
             <path d="M 7.5 150 L 75 150" class="binnen" />
@@ -19,28 +20,32 @@
         </svg>
     </div>
 
-    <nav
-        class="flex flex-col md:flex-row gap-2 md:gap-5 mt-4 md:mt-0 text-2xl md:text-5xl md:justify-end md:items-center w-full">
-        <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'border-b-2 border-red-800' : '' }}">
+    <nav aria-label="Main navigation"
+         class="flex flex-col md:flex-row gap-2 md:gap-5 mt-4 md:mt-0 text-lg md:text-5xl md:justify-end md:items-center w-full">
+        <a href="{{ url('/') }}"
+           class="inline-block px-3 py-2 {{ request()->is('/') ? 'border-b-2 border-red-800' : '' }}">
             Home
         </a>
 
-        <a href="{{ url('/about') }}" class="{{ request()->is('about') ? 'border-b-2 border-red-800' : '' }}">
+        <a href="{{ url('/about') }}"
+           class="inline-block px-3 py-2 {{ request()->is('about') ? 'border-b-2 border-red-800' : '' }}">
             Over mij
         </a>
 
-        <a href="{{ url('/projects') }}" class=" {{ request()->is('projects') ? 'border-b-2 border-red-800' : '' }}">
+        <a href="{{ url('/projects') }}"
+           class="inline-block px-3 py-2 {{ request()->is('projects') ? 'border-b-2 border-red-800' : '' }}">
             Projecten
         </a>
 
-        <a href="{{ url('/contact') }}" class=" {{ request()->is('contact') ? 'border-b-2 border-red-800' : '' }}">
+        <a href="{{ url('/contact') }}"
+           class="inline-block px-3 py-2 {{ request()->is('contact') ? 'border-b-2 border-red-800' : '' }}">
             Contact
         </a>
     </nav>
-
 </header>
 
 <style>
+    /* line animation */
     @keyframes draw {
         to {
             stroke-dashoffset: 0;
@@ -51,19 +56,28 @@
         stroke-dasharray: 1000;
         stroke-dashoffset: 1000;
         animation: draw 4s ease forwards;
-
     }
 
     svg {
-        position: absolute;
-        top: 20px;
-        width: 300px;
+        position: static;
+        width: 180px;
         height: auto;
         stroke: silver;
-        stroke-width: 41px;
+        stroke-width: 40px; 
         fill: none;
-        height: auto;
-        margin-left: 1vw;
-        position: absolute;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Desktop & up: restore the original positioned large SVG */
+    @media (min-width: 768px) {
+        svg {
+            position: absolute;
+            top: 20px;
+            width: 300px;
+            height: auto;
+            stroke-width: 41px;
+            margin-left: 1vw;
+        }
     }
 </style>
