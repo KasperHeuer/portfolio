@@ -1,0 +1,22 @@
+@layer components {
+    .triangle {
+        width: 0;
+        height: 0;
+        border-left: 20px solid #921815;
+        border-top: 14px solid transparent;
+        border-bottom: 14px solid transparent;
+    }
+
+    .skill-bar {
+        @apply h-5 border-2 border-gray-500 overflow-hidden w-[40vw];
+    }
+
+    .skill-level {
+        @apply h-5 bg-red-600 animate-[grow_1.5s_ease-out_forwards];
+    }
+}
+
+@keyframes grow {
+    from { width: 0; }
+    to { width: var(--width); }
+}
