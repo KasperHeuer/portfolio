@@ -33,6 +33,7 @@ Route::get('/math/perfect-numbers', PerfectNumberController::class)->name('perfe
 Route::post('/math/perfect-numbers', PerfectNumberController::class)->name('perfect-numers.submit');
 
 Route::get('/math/surface-area', SurfaceController::class)->name('surface');
+Route::post('/math/surface-area', SurfaceController::class)->name('surface.submit');
 
 Route::get('/math/wisdom-of-the-crowd', WisdomController::class)->name('wisdom-of-the-crowd');
 
