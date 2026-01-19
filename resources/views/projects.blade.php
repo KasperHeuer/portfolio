@@ -51,7 +51,7 @@
             >
 
             <div class="flex-1 lg:ml-12 max-w-[600px] text-center lg:text-left">
-                <a href="#"
+                <a href="{{ url('/math/home') }}"
                    class="text-white font-serif text-[45px] block underline">
                    Wiskunde in code
                 </a>
