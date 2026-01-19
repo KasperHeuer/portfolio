@@ -1,3 +1,3 @@
-<x-math-layout>
+<x-math-tool-layout>
     fibbo
-</x-math-layout>
+</x-math-tool-layout>

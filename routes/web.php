@@ -27,6 +27,7 @@ Route::get('/math/collatz-sequence', CollatzController::class)->name('collatz');
 Route::post('/math/collatz-sequence', CollatzController::class)->name('collatz.submit');
 
 Route::get('/math/factorial', FactorialController::class)->name('factorial');
+Route::post('/math/factorial', FactorialController::class)->name('factoral');
 
 Route::get('/math/perfect-numbers', PerfectNumberController::class)->name('perfect-numers');
 

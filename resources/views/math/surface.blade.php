@@ -1,3 +1,3 @@
-<x-math-layout>
+<x-math-tool-layout>
     surface
-</x-math-layout>
+</x-math-tool-layout>
