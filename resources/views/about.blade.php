@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="About me">
     <section class="bg-black p-5 min-h-screen flex flex-col gap-8">
         <div class="flex flex-col lg:flex-row flex-1 gap-8">
             <div class="flex-1 flex flex-col items-start gap-4">
@@ -57,7 +57,7 @@
                 </div>
                 <div>
                     <p class="text-white">CSS</p>
-                    <x-bar skill="5" />
+                    <x-bar skill="4" />
                 </div>
                 <div>
                     <p class="text-white">Javascript</p>
