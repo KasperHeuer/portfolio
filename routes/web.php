@@ -36,6 +36,7 @@ Route::get('/math/surface-area', SurfaceController::class)->name('surface');
 Route::post('/math/surface-area', SurfaceController::class)->name('surface.submit');
 
 Route::get('/math/wisdom-of-the-crowd', WisdomController::class)->name('wisdom-of-the-crowd');
+Route::post('/math/wisdom-of-the-crowd', WisdomController::class)->name('wisdom-of-the-crowd-submig');
 
 Route::get('/math/graphs', GraphController::class)->name('graph');
 
