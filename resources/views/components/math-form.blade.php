@@ -1,3 +1,4 @@
+<br>
 <form action="{{ url()->current() }}" method="POST"
     class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow-md space-y-4">
     @csrf

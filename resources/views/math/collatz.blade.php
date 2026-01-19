@@ -9,7 +9,6 @@
                 <li>If the number is odd, multiply it by 3 and add 1.</li>
             </ul>
         </x-math-tool-explanation>
-        <br>
         <x-math-form />
     </x-math-tool>
 

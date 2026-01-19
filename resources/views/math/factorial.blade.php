@@ -1,11 +1,11 @@
 <x-math-tool-layout>
     <x-math-tool name="Factorial Calculator">
         <x-math-tool-explanation>
-            <b>What is a Factorial?</b>
+            <b>What is a Factorial?</b><br>
             The factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than
             or equal to n. <br><br>
 
-            For example, 5! = 5 × 4 × 3 × 2 × 1 = 120
+            For example, 5! = 5 × 4 × 3 × 2 × 1 = 120<br>
 
             By definition, 0! = 1
         </x-math-tool-explanation><br>
