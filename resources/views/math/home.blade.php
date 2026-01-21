@@ -22,11 +22,6 @@
         insights.
     </x-math-item>
 
-    <x-math-item name="Graphs" icon="project-diagram">
-        Visualize data and relationships with interactive graph tools. Explore patterns, trends, and connections
-        effectively.
-    </x-math-item>
-
     <x-math-item name="Fibonacci Sequence" icon="seedling">
         Explore the Fibonacci sequence, where each number is the sum of the two preceding ones. See its patterns in
         nature, art, and computing.

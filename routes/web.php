@@ -6,7 +6,6 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ExponentsController;
 use App\Http\Controllers\FactorialController;
 use App\Http\Controllers\FibonacciController;
-use App\Http\Controllers\GraphController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MathHomeController;
 use App\Http\Controllers\PerfectNumberController;
@@ -36,10 +35,9 @@ Route::get('/math/surface-area', SurfaceController::class)->name('surface');
 Route::post('/math/surface-area', SurfaceController::class)->name('surface.submit');
 
 Route::get('/math/wisdom-of-the-crowd', WisdomController::class)->name('wisdom-of-the-crowd');
-Route::post('/math/wisdom-of-the-crowd', WisdomController::class)->name('wisdom-of-the-crowd-submig');
-
-Route::get('/math/graphs', GraphController::class)->name('graph');
+Route::post('/math/wisdom-of-the-crowd', WisdomController::class)->name('wisdom-of-the-crowd-submit');
 
 Route::get('/math/fibonacci-sequence', FibonacciController::class)->name('fibonacci');
+Route::post('/math/fibonacci-sequence', FibonacciController::class)->name('fibonacci.submit');
 
 Route::get('/math/exponents', ExponentsController::class)->name('exponents');
