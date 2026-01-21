@@ -41,3 +41,4 @@ Route::get('/math/fibonacci-sequence', FibonacciController::class)->name('fibona
 Route::post('/math/fibonacci-sequence', FibonacciController::class)->name('fibonacci.submit');
 
 Route::get('/math/exponents', ExponentsController::class)->name('exponents');
+Route::post('/math/exponents', ExponentsController::class)->name('exponents.submit');
