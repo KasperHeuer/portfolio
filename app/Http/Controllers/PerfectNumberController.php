@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\CheckPerfectNumberJob;
+use App\Models\PageViews;
 use Illuminate\Http\Request;
 
 class PerfectNumberController extends Controller
@@ -21,6 +22,11 @@ class PerfectNumberController extends Controller
             $result = CheckPerfectNumberJob::dispatchSync($data);
             return view('math.perfect', compact('result'));
         }
+
+        PageViews::firstOrCreate(
+            ['name' => '/math/perfect-numbers'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('math.perfect');
     }
 }

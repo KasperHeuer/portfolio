@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\CalculateFibonacciJob;
+use App\Models\PageViews;
 use Illuminate\Http\Request;
 
 class FibonacciController extends Controller
@@ -23,6 +24,10 @@ class FibonacciController extends Controller
 
             return view('math.fibonacci', compact("result"));
         }
+        PageViews::firstOrCreate(
+            ['name' => '/math/fibonacci-sequence'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('math.fibonacci');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\JobAmount;
 use Illuminate\Foundation\Queue\Queueable;
 
 class CalculateFibonacciJob
@@ -29,6 +30,11 @@ class CalculateFibonacciJob
             $b = $next;
         }
 
+        JobAmount::firstOrCreate(
+            ['name' => 'fobonacci'],
+            ['amount' => 0],
+        )->increment('amount');
+        
         return [
             'sequence' => $sequence,
         ];

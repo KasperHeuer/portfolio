@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Contact;
+use App\Models\JobAmount;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -37,5 +38,10 @@ class SaveContactJob implements ShouldQueue
             'email' => $this->email,
             'note'  => $this->note,
         ]);
+
+        JobAmount::firstOrCreate(
+            ['name' => 'Mail to me'],
+            ['amount' => 0],
+        )->increment('amount');
     }
 }

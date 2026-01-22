@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\EmailContactJob;
 use App\Jobs\SaveContactJob;
+use App\Models\PageViews;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -26,6 +27,11 @@ class ContactController extends Controller
     
             return redirect()->back()->with('success', 'Contact saved successfully!');
         }
+
+        PageViews::firstOrCreate(
+            ['name' => '/contact'],
+            ['amount' => 0],
+        )->increment('amount');
     
         return view('contact');
     }

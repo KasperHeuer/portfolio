@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\CalculateFactorialJob;
+use App\Models\PageViews;
 use Illuminate\Http\Request;
 
 class FactorialController extends Controller
@@ -22,6 +23,11 @@ class FactorialController extends Controller
 
             return view('math.factorial', compact('result'));
         }
+
+        PageViews::firstOrCreate(
+            ['name' => '/math/factorial'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('math.factorial');
     }
 }

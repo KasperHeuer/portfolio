@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\JobAmount;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -55,5 +56,10 @@ class EmailContactJob implements ShouldQueue
                 ->subject("Contact op gelegd met mij")
                 ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
         });
+
+        JobAmount::firstOrCreate(
+            ['name' => 'Email to contact'],
+            ['amount' => 0],
+        )->increment('amount');
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\collatzController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExponentsController;
 use App\Http\Controllers\FactorialController;
 use App\Http\Controllers\FibonacciController;
@@ -42,3 +43,9 @@ Route::post('/math/fibonacci-sequence', FibonacciController::class)->name('fibon
 
 Route::get('/math/exponents', ExponentsController::class)->name('exponents');
 Route::post('/math/exponents', ExponentsController::class)->name('exponents.submit');
+
+
+Route::get('/dashboard', DashboardController::class)->name('dashboardLogin');
+Route::post('/dashboard', DashboardController::class)->name('dashboardLogin.submit');
+
+Route::get('/dashboard/home', [DashboardController::class, 'home'])->name('dashboard.home');

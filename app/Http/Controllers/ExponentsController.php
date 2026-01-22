@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\CalculateExponentJob;
+use App\Models\PageViews;
 use Illuminate\Http\Request;
 
 class ExponentsController extends Controller
@@ -23,6 +24,10 @@ class ExponentsController extends Controller
             return view('math.exponents', compact('result'));
         }
 
+        PageViews::firstOrCreate(
+            ['name' => '/math/exponents'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('math.exponents');
     }
 }

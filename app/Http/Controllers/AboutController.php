@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\PageViews;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -22,6 +23,11 @@ class AboutController extends Controller
 
         $aboutInfo = [$jaren, $einde];
         //$aboutInfo = [ 'jaren' => $jaren, 'einde' => $einde];
+
+        PageViews::firstOrCreate(
+            ['name' => '/about'],
+            ['amount' => 0],
+        )->increment('amount');
 
         return view('about', compact('aboutInfo'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PageViews;
 
 class IndexController extends Controller
 {
@@ -13,6 +14,10 @@ class IndexController extends Controller
         $huidig = time();
         $einde = $schoolEinde <= $huidig ? '2027' : 'heden';
 
+        PageViews::firstOrCreate(
+            ['name' => '/'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('index', compact('einde'));
     }
 }

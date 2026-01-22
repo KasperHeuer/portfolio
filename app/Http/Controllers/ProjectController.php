@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\PageViews;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -19,6 +20,11 @@ class ProjectController extends Controller
             'github' => collect($github)->shuffle()->take(5)->values(),
             'math'   => collect($math)->shuffle()->take(4)->values(),
         ];
+
+        PageViews::firstOrCreate(
+            ['name' => '/projects'],
+            ['amount' => 0],
+        )->increment('amount');
 
         return view('projects', compact('codetalen'));
     }

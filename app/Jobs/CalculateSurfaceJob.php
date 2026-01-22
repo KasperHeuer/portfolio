@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\JobAmount;
 use Illuminate\Foundation\Queue\Queueable;
 
 class CalculateSurfaceJob
@@ -33,6 +34,11 @@ class CalculateSurfaceJob
      */
     public function handle(): array
     {
+        JobAmount::firstOrCreate(
+            ['name' => 'surface'],
+            ['amount' => 0],
+        )->increment('amount');
+
         if ($this->shape === 'square') {
             return
                 [

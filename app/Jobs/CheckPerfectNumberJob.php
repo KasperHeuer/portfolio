@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\JobAmount;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
@@ -33,6 +34,11 @@ class CheckPerfectNumberJob
                 $devisors[] = $i;
             }
         }
+
+        JobAmount::firstOrCreate(
+            ['name' => 'perfect'],
+            ['amount' => 0],
+        )->increment('amount');
 
         return [
             'result' => $sum === $this->number,

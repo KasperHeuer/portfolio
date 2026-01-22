@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\CalculateSurfaceJob;
+use App\Models\PageViews;
 use Illuminate\Http\Request;
 
 class SurfaceController extends Controller
@@ -53,6 +54,11 @@ class SurfaceController extends Controller
             $result = CalculateSurfaceJob::dispatchSync($data);
             return view ('math.surface', compact('result'));
         }
+
+        PageViews::firstOrCreate(
+            ['name' => '/math/surface-area'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('math.surface');
     }
 }

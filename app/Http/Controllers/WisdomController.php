@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\PageViews;
 use App\Models\Wisdom;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,12 @@ class WisdomController extends Controller
 
             return view('math.wisdom', compact("result"));
         }
+
+        
+        PageViews::firstOrCreate(
+            ['name' => '/math/wisdom-of-the-crowd'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('math.wisdom');
     }
 }

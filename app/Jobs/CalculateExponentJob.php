@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\JobAmount;
 use Illuminate\Foundation\Queue\Queueable;
 
 class CalculateExponentJob
@@ -24,6 +25,10 @@ class CalculateExponentJob
      */
     public function handle(): array
     {
+        JobAmount::firstOrCreate(
+            ['name' => 'exponent'],
+            ['amount' => 0],
+        )->increment('amount');
         return [
             'number' => $this->number,
             'exponent' => $this->exponent,
