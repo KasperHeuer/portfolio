@@ -82,6 +82,7 @@
                                 <th class="text-left py-3 px-4 text-gray-300 font-medium">Link</th>
                                 <th class="text-left py-3 px-4 text-gray-300 font-medium">Page Name</th>
                                 <th class="text-left py-3 px-4 text-gray-300 font-medium">View Count</th>
+                                <th class="text-left py-3 px-4 text-gray-300 font-medium">Last seen</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -95,6 +96,7 @@
                                     </td>
                                     <td class="py-3 px-4 text-gray-200">{{ $page->name }}</td>
                                     <td class="py-3 px-4 text-gray-200">{{ $page->amount }}</td>
+                                    <td class="py-3 px-4 text-gray-200">{{ $page->updated_at }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
