@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
-use App\Models\DashboardUser;
 use App\Models\JobAmount;
 use App\Models\PageViews;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
@@ -20,10 +18,8 @@ class DashboardController extends Controller
                 'password' => 'required|string|min:6|max:255',
             ]);
 
-            $user = DashboardUser::where('username', $data['username'])->first();
-
-            if ($user && Hash::check($data['password'], $user->password)) {
-                $request->session()->put('dashboard_user', $user->username);
+            if ($data['username'] === env('DASHBOARD_USERNAME') && $data["password"] === env('DASHBOARD_PASSWORD')) {
+                $request->session()->put('dashboard_user', $data['username']);
 
                 return redirect()->route('dashboard.home');
             }
