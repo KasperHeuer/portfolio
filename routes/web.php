@@ -15,7 +15,6 @@ use App\Http\Controllers\SurfaceController;
 use App\Http\Controllers\WisdomController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', IndexController::class)->name('index');
 Route::get('/about', AboutController::class)->name('about');
 Route::get('/projects', ProjectController::class)->name('project');
 Route::get('/contact', ContactController::class)->name('contact');
