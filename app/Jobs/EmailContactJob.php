@@ -39,7 +39,6 @@ class EmailContactJob implements ShouldQueue
             . "Met vriendelijke groet,\n"
             . "Kasper Heuer";
 
-        dd($body);
         Mail::raw($body, function ($message) {
             $message->to($this->email)
                 ->subject("Contact op gelegd met Kasper Heuer")
