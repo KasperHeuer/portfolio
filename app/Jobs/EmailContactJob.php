@@ -51,6 +51,7 @@ class EmailContactJob implements ShouldQueue
             Email   $this->email \n\n
             Notitie $this->note \n\n
         ";
+        dd($body);
         Mail::raw($body, function($message) {
             $message->to(env('MAIL_FROM_ADDRESS'))
                 ->subject("Contact op gelegd met mij")
