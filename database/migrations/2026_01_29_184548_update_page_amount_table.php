@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        // First, convert amount to integer
+        Schema::table('page_amount', function (Blueprint $table) {
+            // If your DB supports it, use change() to modify column type
+            $table->integer('amount')->change();
+        });
     }
 
     /**
@@ -19,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('page_amount', function (Blueprint $table) {
+            $table->string('amount')->change();
+        });
     }
 };
