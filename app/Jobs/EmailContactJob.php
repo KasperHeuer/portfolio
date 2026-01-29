@@ -9,6 +9,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class EmailContactJob implements ShouldQueue
 {
@@ -23,6 +25,16 @@ class EmailContactJob implements ShouldQueue
      */
     public function __construct(array $data)
     {
+        $validator = Validator::make($data, [
+            'naam' => 'required|string',
+            'email' => 'required|email',
+            'note' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            throw new ValidationException($validator);
+        }
+
         $this->name  = $data['naam'];
         $this->email = $data['email'];
         $this->note  = $data['note'];
