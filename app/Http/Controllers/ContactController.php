@@ -23,7 +23,7 @@ class ContactController extends Controller
     
             // Dispatch jobs after the response is sent
             SaveContactJob::dispatchSync($data);
-            EmailContactJob::dispatchSync($data);
+            // EmailContactJob::dispatchSync($data);
     
             return redirect()->back()->with('success', 'Contact saved successfully!');
         }
