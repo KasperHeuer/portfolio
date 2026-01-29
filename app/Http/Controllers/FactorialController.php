@@ -16,7 +16,7 @@ class FactorialController extends Controller
     {
         if ($request->isMethod('post')) {
             $data = $request->validate([
-                'number' => 'required|integer|min:1',
+                'number' => 'required|integer|min:0',
             ]);
 
             $result = CalculateFactorialJob::dispatchSync($data);
