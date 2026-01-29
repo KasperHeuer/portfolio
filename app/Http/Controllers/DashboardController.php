@@ -18,7 +18,7 @@ class DashboardController extends Controller
                 'password' => 'required|string|min:6|max:255',
             ]);
 
-            if ($data['username'] === config('DASHBOARD_USERNAME') && $data["password"] === config('DASHBOARD_PASSWORD')) {
+            if ($data['username'] === config('dashboard.username') && $data["password"] === config('dashboard.password')) {
                 $request->session()->put('dashboard_user', $data['username']);
 
                 return redirect()->route('dashboard.home');

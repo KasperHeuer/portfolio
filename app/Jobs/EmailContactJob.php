@@ -57,7 +57,7 @@ class EmailContactJob implements ShouldQueue
                 Mail::raw($body, function ($message) {
                     $message->to($this->email)
                         ->subject("Contact op gelegd met Kasper Heuer")
-                        ->from(config('MAIL_FROM_ADDRESS'), config('MAIL_FROM_NAME'));
+                        ->from(config('mail.from.address'), config('mail.from_name'));
                 });
             } catch (\Throwable $e) {
                 dd('stage 1' , $e->getMessage());
@@ -75,9 +75,9 @@ class EmailContactJob implements ShouldQueue
             Notitie $this->note \n\n
         ";
         Mail::raw($body, function ($message) {
-            $message->to(config('MAIL_FROM_ADDRESS'))
+            $message->to(config('mail.from.address'))
                 ->subject("Contact op gelegd met mij")
-                ->from(config('MAIL_FROM_ADDRESS'), config('MAIL_FROM_NAME'));
+                ->from(config('mail.from.address'), config('mail.from_name'));
         });
 
         JobAmount::firstOrCreate(
