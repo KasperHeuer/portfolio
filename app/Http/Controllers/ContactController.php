@@ -20,7 +20,6 @@ class ContactController extends Controller
                 'email' => 'required|email|max:255',
                 'note'  => 'required|string',
             ]);
-            dd($data);
             // Dispatch jobs after the response is sent
             SaveContactJob::dispatchSync($data);
             EmailContactJob::dispatchSync($data);

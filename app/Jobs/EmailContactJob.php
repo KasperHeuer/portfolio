@@ -33,6 +33,7 @@ class EmailContactJob implements ShouldQueue
      */
     public function handle(): void
     {
+        dd($this);
         $body = "Geachte {$this->name},\n\n"
             . "Hartelijk dank voor uw bericht. Ik bevestig graag dat ik uw bericht heb ontvangen "
             . "en het zo snel mogelijk zal doornemen.\n\n"
