@@ -73,6 +73,6 @@ class DashboardController extends Controller
 
     public function getPageAmount()
     {
-        return PageViews::orderByRaw('amount', 'DESC')->get();
+        return PageViews::orderBy('amount', 'DESC')->get();
     }
 }
