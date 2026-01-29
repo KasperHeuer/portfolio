@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -17,7 +18,7 @@ class EmailContactJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected string $name;
-    protected string $email;
+    protected ?string $email;
     protected string $note;
 
     /**
@@ -27,7 +28,7 @@ class EmailContactJob implements ShouldQueue
     {
         $validator = Validator::make($data, [
             'naam' => 'required|string',
-            'email' => 'required|email',
+            'email' => 'nullable|email',
             'note' => 'required|string',
         ]);
 
@@ -36,7 +37,7 @@ class EmailContactJob implements ShouldQueue
         }
 
         $this->name  = $data['naam'];
-        $this->email = $data['email'];
+        $this->email = $data['email'] ?? null;
         $this->note  = $data['note'];
     }
 
@@ -50,17 +51,23 @@ class EmailContactJob implements ShouldQueue
             . "en het zo snel mogelijk zal doornemen.\n\n"
             . "Met vriendelijke groet,\n"
             . "Kasper Heuer";
-        try {
-            Mail::raw($body, function ($message) {
-                $message->to($this->email)
-                    ->subject("Contact op gelegd met Kasper Heuer")
-                    ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-            });
-        } catch (\Throwable $e) {
-            dd($e->getMessage());
-            throw $e; // keeps Laravel job failure visible
-        }
 
+        if ($this->email) {
+            try {
+                Mail::raw($body, function ($message) {
+                    $message->to($this->email)
+                        ->subject("Contact op gelegd met Kasper Heuer")
+                        ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+                });
+            } catch (\Throwable $e) {
+                dd('stage 1' , $e->getMessage());
+                Log::error('Failed to send email to contact: ' . $e->getMessage());
+                throw $e; // keeps Laravel job failure visible
+            }
+        } else {
+            dd('stage 2');
+            Log::warning('Email address is missing for contact: ' . $this->name);
+        }
 
         $body = "Er is contact opgelegd met jouw door: \n\n
             Naam    $this->name \n\n
