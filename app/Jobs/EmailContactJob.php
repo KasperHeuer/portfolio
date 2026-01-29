@@ -38,18 +38,17 @@ class EmailContactJob implements ShouldQueue
             . "en het zo snel mogelijk zal doornemen.\n\n"
             . "Met vriendelijke groet,\n"
             . "Kasper Heuer";
-            try {
-                dd(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-                Mail::raw($body, function ($message) {
-                    $message->to($this->email)
-                        ->subject("Contact op gelegd met Kasper Heuer")
-                        ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-                });
-            } catch (\Throwable $e) {
-                dd($e->getMessage());
-                throw $e; // keeps Laravel job failure visible
-            }
-            
+        try {
+            Mail::raw($body, function ($message) {
+                $message->to($this->email)
+                    ->subject("Contact op gelegd met Kasper Heuer")
+                    ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            });
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+            throw $e; // keeps Laravel job failure visible
+        }
+
 
         $body = "Er is contact opgelegd met jouw door: \n\n
             Naam    $this->name \n\n
