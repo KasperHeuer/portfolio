@@ -106,7 +106,7 @@
             </div>
             <div
                 class="bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-gray-700 rounded-2xl shadow-2xl p-6 sm:p-8">
-                <x-dashboard-header text='Page Views' />
+                <x-dashboard-header text='Casino wins' />
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
