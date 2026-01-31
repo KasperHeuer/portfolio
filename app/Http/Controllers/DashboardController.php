@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\casino;
 use App\Models\Contact;
 use App\Models\JobAmount;
 use App\Models\PageViews;
@@ -45,11 +46,11 @@ class DashboardController extends Controller
         $username = $request->session()->get('dashboard_user');
 
         if (!$username) {
-            return redirect()->route('dashboardLogin');
+            return redirect()->route('dashboard.Login');
         }
 
         if ($username !== 'Kasper') {
-            return redirect()->route('dashboardLogin')->withErrors(['login' => 'Unauthorized user']);
+            return redirect()->route('dashboard.Login')->withErrors(['login' => 'Unauthorized user']);
         }
 
         PageViews::firstOrCreate(
@@ -74,5 +75,10 @@ class DashboardController extends Controller
     public function getPageAmount()
     {
         return PageViews::orderBy('amount', 'DESC')->get();
+    }
+
+    public function getCasinoInfo()
+    {
+        return casino::get();
     }
 }

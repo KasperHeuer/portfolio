@@ -2,6 +2,7 @@
     $contactAttempt = app(\App\Http\Controllers\DashboardController::class)->getContact();
     $jobs = app(\App\Http\Controllers\DashboardController::class)->getJobAmount();
     $pages = app(\App\Http\Controllers\DashboardController::class)->getPageAmount();
+    $casinoGames = app(\App\Http\Controllers\DashboardController::class)->getCasinoInfo();
 @endphp
 
 <x-layout>
@@ -103,7 +104,32 @@
                     </table>
                 </div>
             </div>
-
+            <div
+                class="bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-gray-700 rounded-2xl shadow-2xl p-6 sm:p-8">
+                <x-dashboard-header text='Page Views' />
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="text-left py-3 px-4 text-gray-300 font-medium">Casino game name</th>
+                                <th class="text-left py-3 px-4 text-gray-300 font-medium">Amount played</th>
+                                <th class="text-left py-3 px-4 text-gray-300 font-medium">Amount won</th>
+                                <th class="text-left py-3 px-4 text-gray-300 font-medium">Last played</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($casinoGames as $casinoGame)
+                                <tr class="border-b border-gray-800 hover:bg-black/30 transition-colors duration-200">
+                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->casinoGame }}</td>
+                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->AmountPlayed }}</td>
+                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->AmountWon }}</td>
+                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->updated_at }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </x-layout>
