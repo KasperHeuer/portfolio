@@ -1,51 +1,74 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\CollatzController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ExponentsController;
-use App\Http\Controllers\FactorialController;
-use App\Http\Controllers\FibonacciController;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\MathHomeController;
-use App\Http\Controllers\PerfectNumberController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\SurfaceController;
-use App\Http\Controllers\WisdomController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\{
+    AboutController,
+    blackjackController,
+    CasinoController,
+    CollatzController,
+    ContactController,
+    DashboardController,
+    ExponentsController,
+    FactorialController,
+    FibonacciController,
+    IndexController,
+    MathHomeController,
+    PerfectNumberController,
+    ProjectController,
+    SurfaceController,
+    WisdomController
+};
 
 Route::get('/', IndexController::class)->name('index');
 Route::get('/about', AboutController::class)->name('about');
-Route::get('/projects', ProjectController::class)->name('project');
+Route::get('/projects', ProjectController::class)->name('projects');
+
 Route::get('/contact', ContactController::class)->name('contact');
 Route::post('/contact', ContactController::class)->name('contact.submit');
 
-Route::get('/math/home', MathHomeController::class)->name('math');
+Route::prefix('math')->group(function () {
 
-Route::get('/math/collatz-sequence', CollatzController::class)->name('collatz');
-Route::post('/math/collatz-sequence', CollatzController::class)->name('collatz.submit');
+    Route::get('/home', MathHomeController::class)->name('math');
 
-Route::get('/math/factorial', FactorialController::class)->name('factorial');
-Route::post('/math/factorial', FactorialController::class)->name('factoral.submit');
+    Route::match(['get', 'post'], '/collatz-sequence', CollatzController::class)
+        ->name('collatz');
 
-Route::get('/math/perfect-numbers', PerfectNumberController::class)->name('perfect-numers');
-Route::post('/math/perfect-numbers', PerfectNumberController::class)->name('perfect-numers.submit');
+    Route::match(['get', 'post'], '/factorial', FactorialController::class)
+        ->name('factorial');
 
-Route::get('/math/surface-area', SurfaceController::class)->name('surface');
-Route::post('/math/surface-area', SurfaceController::class)->name('surface.submit');
+    Route::match(['get', 'post'], '/perfect-numbers', PerfectNumberController::class)
+        ->name('perfect-numbers');
 
-Route::get('/math/wisdom-of-the-crowd', WisdomController::class)->name('wisdom-of-the-crowd');
-Route::post('/math/wisdom-of-the-crowd', WisdomController::class)->name('wisdom-of-the-crowd-submit');
+    Route::match(['get', 'post'], '/surface-area', SurfaceController::class)
+        ->name('surface');
 
-Route::get('/math/fibonacci-sequence', FibonacciController::class)->name('fibonacci');
-Route::post('/math/fibonacci-sequence', FibonacciController::class)->name('fibonacci.submit');
+    Route::match(['get', 'post'], '/wisdom-of-the-crowd', WisdomController::class)
+        ->name('wisdom-of-the-crowd');
 
-Route::get('/math/exponents', ExponentsController::class)->name('exponents');
-Route::post('/math/exponents', ExponentsController::class)->name('exponents.submit');
+    Route::match(['get', 'post'], '/fibonacci-sequence', FibonacciController::class)
+        ->name('fibonacci');
+
+    Route::match(['get', 'post'], '/exponents', ExponentsController::class)
+        ->name('exponents');
+});
+
+Route::prefix('casino')->group(function () {
+    Route::get('/home', [CasinoController::class, 'index'])->name('casino');
+    Route::get('/blackjack', [blackjackController::class, 'play'])->name('blackjack');
+    Route::get('/blackjack/start', [blackjackController::class, 'start'])->name('blackjack.start');
+    Route::get('/blackjack/hit', [blackjackController::class, 'hit'])->name('blackjack.hit');
+    Route::get('/blackjack/stand', [blackjackController::class, 'stand'])->name('blackjack.stand');
+
+    Route::get('/blackjack/reset', [blackjackController::class, 'reset'])->name('blackjack.reset');
+});
 
 
-Route::get('/dashboard', DashboardController::class)->name('dashboardLogin');
-Route::post('/dashboard', DashboardController::class)->name('dashboardLogin.submit');
+Route::get('/dashboard', DashboardController::class)
+    ->name('dashboard.login');
 
-Route::get('/dashboard/home', [DashboardController::class, 'home'])->name('dashboard.home');
+Route::post('/dashboard', DashboardController::class)
+    ->name('dashboardLogin.submit');
+
+Route::get('/dashboard/home', [DashboardController::class, 'home'])
+    ->name('dashboard.home');
