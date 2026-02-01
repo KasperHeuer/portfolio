@@ -11,7 +11,7 @@ class ProjectController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function view(Request $request)
     {
         $github = ['Laravel', 'PHP', 'JavaScript', 'HTML', 'CSS'];
         $math   = ['Laravel', 'PHP', 'HTML', 'CSS'];

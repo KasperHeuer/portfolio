@@ -12,7 +12,17 @@ class ContactController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function view()
+    {
+        PageViews::firstOrCreate(
+            ['name' => '/contact'],
+            ['amount' => 0],
+        )->increment('amount');
+    
+        return view('contact');
+    }
+
+    public function create(Request $request)
     {
         if ($request->isMethod('post')) {
             $data = $request->validate([
@@ -26,12 +36,5 @@ class ContactController extends Controller
     
             return redirect()->back()->with('success', 'Contact saved successfully!');
         }
-
-        PageViews::firstOrCreate(
-            ['name' => '/contact'],
-            ['amount' => 0],
-        )->increment('amount');
-    
-        return view('contact');
     }
 }

@@ -20,37 +20,47 @@ use App\Http\Controllers\{
     WisdomController
 };
 
-Route::get('/', IndexController::class)->name('index');
-Route::get('/about', AboutController::class)->name('about');
-Route::get('/projects', ProjectController::class)->name('projects');
+// index
+Route::get('/', [IndexController::class, 'view'])->name('index');
 
-Route::get('/contact', ContactController::class)->name('contact');
-Route::post('/contact', ContactController::class)->name('contact.submit');
+// about me
+Route::get('/about', [AboutController::class, 'view'])->name('about');
 
+// projects
+Route::get('/projects', [ProjectController::class, 'view'])->name('projects');
+
+// contact
+Route::get('/contact', [ContactController::class, 'view'])->name('contact');
+Route::post('/contact', [ContactController::class, 'create'])->name('contact.submit');
+
+// math pages
 Route::prefix('math')->group(function () {
+    // math home
+    Route::get('/home', [MathHomeController::class, 'view'])->name('math');
 
-    Route::get('/home', MathHomeController::class)->name('math');
+    // collatz sequence
+    Route::get('/collatz-sequence', [CollatzController::class, 'view'])->name('collatz.view');
+    Route::post('/collatz-sequence', [CollatzController::class, 'create'])->name('collatz.create');
 
-    Route::match(['get', 'post'], '/collatz-sequence', CollatzController::class)
-        ->name('collatz');
+    // factorial
+    Route::get('/factorial', [FactorialController::class, 'view'])->name('factorial.view');
+    Route::post('/factorial', [FactorialController::class, 'create'])->name('factorial.create');
 
-    Route::match(['get', 'post'], '/factorial', FactorialController::class)
-        ->name('factorial');
+    // prefect numbers
+    Route::get('/perfect-numbers', [PerfectNumberController::class, 'view'])->name('perfect.view');
+    Route::post('/perfect-numbers', [PerfectNumberController::class, 'create'])->name('perfect.create');
 
-    Route::match(['get', 'post'], '/perfect-numbers', PerfectNumberController::class)
-        ->name('perfect-numbers');
+    // wisdom of the crowd
+    Route::get('/wisdom-of-the-crowd', [WisdomController::class, 'view'])->name('wisdom.view');
+    Route::post('/wisdom-of-the-crowd', [WisdomController::class, 'create'])->name('wisdom.create');
 
-    Route::match(['get', 'post'], '/surface-area', SurfaceController::class)
-        ->name('surface');
+    // fibonacci
+    Route::get('/fibonacci-sequence', [FibonacciController::class, 'view'])->name('fibbonaci.view');
+    Route::post('/fibonacci-sequence', [FibonacciController::class, 'create'])->name('fibbonaci.create');
 
-    Route::match(['get', 'post'], '/wisdom-of-the-crowd', WisdomController::class)
-        ->name('wisdom-of-the-crowd');
-
-    Route::match(['get', 'post'], '/fibonacci-sequence', FibonacciController::class)
-        ->name('fibonacci');
-
-    Route::match(['get', 'post'], '/exponents', ExponentsController::class)
-        ->name('exponents');
+    //exponents
+    Route::get('/exponents', [ExponentsController::class, 'view'])->name('exponents.view');
+    Route::post('/exponents', [ExponentsController::class, 'create'])->name('exponents.create');
 });
 
 Route::prefix('casino')->group(function () {

@@ -12,21 +12,25 @@ class PerfectNumberController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function view()
     {
-        if($request->isMethod('post'))
-        {
+
+        PageViews::firstOrCreate(
+            ['name' => '/math/perfect-numbers'],
+            ['amount' => 0],
+        )->increment('amount');
+
+        return view('math.perfect');
+    }
+
+    public function create(Request $request)
+    {
+        if ($request->isMethod('post')) {
             $data = $request->validate([
                 'number' => 'required|integer|min:1',
             ]);
             $result = CheckPerfectNumberJob::dispatchSync($data);
             return view('math.perfect', compact('result'));
         }
-
-        PageViews::firstOrCreate(
-            ['name' => '/math/perfect-numbers'],
-            ['amount' => 0],
-        )->increment('amount');
-        return view('math.perfect');
     }
 }

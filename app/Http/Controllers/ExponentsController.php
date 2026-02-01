@@ -12,22 +12,27 @@ class ExponentsController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function view(Request $request)
     {
-        if ($request->isMethod('post')) {
-            $data = $request->validate([
-                'number' => 'required|integer|min:1',
-                'exponent' => 'required|integer|min:2',
-            ]);
-            
-            $result = CalculateExponentJob::dispatchSync($data);
-            return view('math.exponents', compact('result'));
-        }
+
 
         PageViews::firstOrCreate(
             ['name' => '/math/exponents'],
             ['amount' => 0],
         )->increment('amount');
         return view('math.exponents');
+    }
+
+    public function create(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->validate([
+                'number' => 'required|integer|min:1',
+                'exponent' => 'required|integer|min:2',
+            ]);
+
+            $result = CalculateExponentJob::dispatchSync($data);
+            return view('math.exponents', compact('result'));
+        }
     }
 }

@@ -12,7 +12,16 @@ class FactorialController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function view()
+    {
+        PageViews::firstOrCreate(
+            ['name' => '/math/factorial'],
+            ['amount' => 0],
+        )->increment('amount');
+        return view('math.factorial');
+    }
+
+    public function create(Request $request)
     {
         if ($request->isMethod('post')) {
             $data = $request->validate([
@@ -23,11 +32,5 @@ class FactorialController extends Controller
 
             return view('math.factorial', compact('result'));
         }
-
-        PageViews::firstOrCreate(
-            ['name' => '/math/factorial'],
-            ['amount' => 0],
-        )->increment('amount');
-        return view('math.factorial');
     }
 }

@@ -12,7 +12,16 @@ class WisdomController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function view()
+    {
+        PageViews::firstOrCreate(
+            ['name' => '/math/wisdom-of-the-crowd'],
+            ['amount' => 0],
+        )->increment('amount');
+        return view('math.wisdom');
+    }
+
+    public function create(Request $request)
     {
         if ($request->isMethod('post')) {
             $data = $request->validate([
@@ -32,12 +41,5 @@ class WisdomController extends Controller
 
             return view('math.wisdom', compact("result"));
         }
-
-        
-        PageViews::firstOrCreate(
-            ['name' => '/math/wisdom-of-the-crowd'],
-            ['amount' => 0],
-        )->increment('amount');
-        return view('math.wisdom');
     }
 }
