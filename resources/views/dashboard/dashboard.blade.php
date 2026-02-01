@@ -1,10 +1,3 @@
-@php
-    $contactAttempt = app(\App\Http\Controllers\DashboardController::class)->getContact();
-    $jobs = app(\App\Http\Controllers\DashboardController::class)->getJobAmount();
-    $pages = app(\App\Http\Controllers\DashboardController::class)->getPageAmount();
-    $casinoGames = app(\App\Http\Controllers\DashboardController::class)->getCasinoInfo();
-@endphp
-
 <x-layout>
     <div class="py-12 px-4">
         <div class="max-w-7xl mx-auto space-y-8">
@@ -32,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($contactAttempt as $contact)
+                            @foreach ($data['contactAttempts'] as $contact)
                                 <tr class="border-b border-gray-800 hover:bg-black/30 transition-colors duration-200">
                                     <td class="py-3 px-4 text-gray-200">{{ $contact->name }}</td>
                                     <td class="py-3 px-4 text-gray-200">{{ $contact->email }}</td>
@@ -44,7 +37,7 @@
                     </table>
                 </div>
                 <div class="mt-4">
-                    {{ $contactAttempt->links() }}
+                    {{ $data['contactAttempts']->links() }}
                 </div>
             </div>
 
@@ -61,7 +54,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($jobs as $job)
+                            @foreach ($data['jobs'] as $job)
                                 <tr class="border-b border-gray-800 hover:bg-black/30 transition-colors duration-200">
                                     <td class="py-3 px-4 text-gray-200">{{ $job->Name }}</td>
                                     <td class="py-3 px-4 text-gray-200">{{ $job->Amount }}</td>
@@ -87,7 +80,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pages as $page)
+                            @foreach ($data['pages'] as $page)
                                 <tr class="border-b border-gray-800 hover:bg-black/30 transition-colors duration-200">
                                     <td class="py-3 px-4">
                                         <a href="{{ url($page->name) }}" target="_blank"
@@ -118,7 +111,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($casinoGames as $casinoGame)
+                            @foreach ($data['casinoGames'] as $casinoGame)
                                 <tr class="border-b border-gray-800 hover:bg-black/30 transition-colors duration-200">
                                     <td class="py-3 px-4 text-gray-200">{{ $casinoGame->casinoGame }}</td>
                                     <td class="py-3 px-4 text-gray-200">{{ $casinoGame->AmountPlayed }}</td>

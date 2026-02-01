@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
-    public function __invoke(Request $request)
+    public function view(Request $request)
     {
         $huidig = time();
         $jaar = date("d/m/Y", $huidig);
@@ -22,7 +22,6 @@ class AboutController extends Controller
         $einde = $schoolEinde <= $huidig ? '2027' : 'heden';
 
         $aboutInfo = [$jaren, $einde];
-        //$aboutInfo = [ 'jaren' => $jaren, 'einde' => $einde];
 
         PageViews::firstOrCreate(
             ['name' => '/about'],

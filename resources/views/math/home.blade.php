@@ -13,10 +13,6 @@
         properties.
     </x-math-item>
 
-    <x-math-item name="Surface Area" icon="cube">
-        Compute surface areas of geometric shapes quickly. Perfect for geometry exercises and spatial problem-solving.
-    </x-math-item>
-
     <x-math-item name="Wisdom of the Crowd" icon="users">
         Combine multiple inputs to leverage collective intelligence. Improve estimates and decision-making using group
         insights.

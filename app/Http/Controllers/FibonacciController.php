@@ -12,10 +12,19 @@ class FibonacciController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function view()
     {
-        if($request->isMethod("post"))
-        {
+
+        PageViews::firstOrCreate(
+            ['name' => '/math/fibonacci-sequence'],
+            ['amount' => 0],
+        )->increment('amount');
+        return view('math.fibonacci');
+    }
+
+    public function create(Request $request)
+    {
+        if ($request->isMethod("post")) {
             $data = $request->validate([
                 'number' => 'required|integer|min:1',
             ]);
@@ -24,10 +33,5 @@ class FibonacciController extends Controller
 
             return view('math.fibonacci', compact("result"));
         }
-        PageViews::firstOrCreate(
-            ['name' => '/math/fibonacci-sequence'],
-            ['amount' => 0],
-        )->increment('amount');
-        return view('math.fibonacci');
     }
 }

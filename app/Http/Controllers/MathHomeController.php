@@ -11,7 +11,7 @@ class MathHomeController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function view()
     {
         PageViews::firstOrCreate(
             ['name' => 'math/home'],

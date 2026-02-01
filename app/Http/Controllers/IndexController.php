@@ -8,7 +8,7 @@ use App\Models\PageViews;
 
 class IndexController extends Controller
 {
-    public function __invoke(Request $request)
+    public function view(Request $request)
     {
         $schoolEinde = mktime(0, 0, 0, 6, 28, 2027);
         $huidig = time();
