@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Casino;
+use App\Models\casino;
 use App\Models\Contact;
 use App\Models\JobAmount;
 use App\Models\PageViews;
@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
     private function getCasinoInfo()
     {
-        return Casino::orderBy('updated_at', 'desc')->get();
+        return casino::orderBy('updated_at', 'desc')->get();
     }
 
     public function __invoke(Request $request)
