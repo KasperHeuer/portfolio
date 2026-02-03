@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\casino;
+use App\Models\Casino;
 use App\Models\PageViews;
 use Illuminate\Http\Request;
 
@@ -92,7 +92,7 @@ class blackjackController extends Controller
                 $request->session()->put('finished', true);
                 $request->session()->put('over', true);
 
-                $casino = casino::firstOrCreate(
+                $casino = Casino::firstOrCreate(
                     ['casinoGame' => 'blackjack'],
                     ['AmountPlayed' => 0, 'AmountWon' => 0]
                 );
@@ -131,7 +131,7 @@ class blackjackController extends Controller
             $playerTotal = $request->session()->get('total', 0);
             $playerOver = $request->session()->get('over', false);
 
-            $casino = casino::firstOrCreate(
+            $casino = Casino::firstOrCreate(
                 ['casinoGame' => 'blackjack'],
                 ['AmountPlayed' => 0, 'AmountWon' => 0]
             );
