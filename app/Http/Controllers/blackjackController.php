@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Casino;
 use App\Models\PageViews;
 use Illuminate\Http\Request;
