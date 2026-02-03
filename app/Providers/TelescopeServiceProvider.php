@@ -22,11 +22,11 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
         Telescope::filter(function (IncomingEntry $entry) use ($isLocal) {
             return $isLocal ||
-                   $entry->isReportableException() ||
-                   $entry->isFailedRequest() ||
-                   $entry->isFailedJob() ||
-                   $entry->isScheduledTask() ||
-                   $entry->hasMonitoredTag();
+                $entry->isReportableException() ||
+                $entry->isFailedRequest() ||
+                $entry->isFailedJob() ||
+                $entry->isScheduledTask() ||
+                $entry->hasMonitoredTag();
         });
     }
 
@@ -53,12 +53,23 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      *
      * This gate determines who can access Telescope in non-local environments.
      */
+
     protected function gate()
     {
-        Gate::define('viewTelescope', function () {
-            return true;
+        Gate::define('viewTelescope', function ($user) {
+            return in_array($user->email, [
+                //
+            ]);
         });
     }
-    
-    
+
+    //  turn of for online
+    // protected function gate()
+    // {
+    //     Gate::define('viewTelescope', function () {
+    //         return true;
+    //     });
+    // }
+
+
 }
