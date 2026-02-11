@@ -60,12 +60,10 @@ class EmailContactJob implements ShouldQueue
                         ->from(config('mail.from.address'), config('mail.from_name'));
                 });
             } catch (\Throwable $e) {
-                dd('stage 1' , $e->getMessage());
                 Log::error('Failed to send email to contact: ' . $e->getMessage());
                 throw $e; // keeps Laravel job failure visible
             }
         } else {
-            dd('stage 2');
             Log::warning('Email address is missing for contact: ' . $this->name);
         }
 

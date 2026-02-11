@@ -17,7 +17,6 @@ use App\Http\Controllers\{
     MathHomeController,
     PerfectNumberController,
     ProjectController,
-    SurfaceController,
     WisdomController
 };
 
