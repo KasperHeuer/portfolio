@@ -15,7 +15,7 @@ class AboutController extends Controller
 
         $geboorte = mktime(0, 0, 0, 4, 3, 2007);
         $verschil = $huidig - $geboorte;
-        $jaren = floor($verschil / 31557600); //60 * 60 * 24 * 365.25
+        $jaren = (int) floor($verschil / 31557600); //60 * 60 * 24 * 365.25
 
 
         $schoolEinde = mktime(0, 0, 0, 6, 28, 2027);

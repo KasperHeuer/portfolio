@@ -83,11 +83,11 @@ class DashboardController extends Controller
         $username = $request->session()->get('dashboard_user');
 
         if (!$username) {
-            return redirect()->route('dashboard.Login');
+            return redirect()->route('dashboard.login');
         }
 
         if ($username !== config('dashboard.username')) {
-            return redirect()->route('dashboard.Login')->withErrors(['login' => 'Unauthorized user']);
+            return redirect()->route('dashboard.login')->withErrors(['login' => 'Unauthorized user']);
         }
 
         PageViews::firstOrCreate(['name' => '/dashboard'], ['amount' => 0])->increment('amount');
