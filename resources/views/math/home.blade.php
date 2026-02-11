@@ -27,4 +27,8 @@
         Learn about exponents and powers, showing repeated multiplication. Explore applications in science, computing,
         and math.
     </x-math-item>
+
+      <x-math-item name="Calculator" icon="calculator">
+        Use this calculator to perform basic arithmetic operations. Simply enter your expression and click "Calculate" to see the result.
+    </x-math-item>
 </x-math-layout>

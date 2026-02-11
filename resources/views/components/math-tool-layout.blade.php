@@ -33,7 +33,6 @@
                 </div>
             </header>
 
-            <!-- MAIN -->
             <main class="w-full max-w-full mx-auto px-4 md:px-0 flex-1 flex flex-col items-center">
                 {{ $slot }}
             </main>

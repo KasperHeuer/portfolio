@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     AboutController,
     blackjackController,
+    CalculatorController,
     CasinoController,
     CollatzController,
     ContactController,
@@ -61,6 +62,11 @@ Route::prefix('math')->group(function () {
     //exponents
     Route::get('/exponents', [ExponentsController::class, 'view'])->name('exponents.view');
     Route::post('/exponents', [ExponentsController::class, 'create'])->name('exponents.create');
+
+    Route::prefix('calculator')->group(function () {
+        Route::get("/", [CalculatorController::class, "view"])->name("calculator.view");
+        Route::post("/", [CalculatorController::class, "create"])->name("calculator.create");
+    });
 });
 
 Route::prefix('casino')->group(function () {
