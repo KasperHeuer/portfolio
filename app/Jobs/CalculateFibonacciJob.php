@@ -10,10 +10,12 @@ class CalculateFibonacciJob
     use Queueable;
 
     private int $number;
+    protected bool $incrementAmount;
 
-    public function __construct(array $data)
+    public function __construct(array $data, bool $incrementAmount = true)
     {
         $this->number = $data['number'];
+        $this->incrementAmount = $incrementAmount;
     }
 
     public function handle(): array
@@ -30,11 +32,13 @@ class CalculateFibonacciJob
             $b = $next;
         }
 
-        JobAmount::firstOrCreate(
-            ['name' => 'fobonacci'],
-            ['amount' => 0],
-        )->increment('amount');
-        
+        if ($this->incrementAmount) {
+            JobAmount::firstOrCreate(
+                ['name' => 'fibonacci'],
+                ['amount' => 0],
+            )->increment('amount');
+        }
+
         return [
             'sequence' => $sequence,
         ];

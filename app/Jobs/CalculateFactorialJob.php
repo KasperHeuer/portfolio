@@ -13,13 +13,15 @@ class CalculateFactorialJob
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected int $number;
+    protected bool $incrementAmount;
 
     /**
      * Create a new job instance.
      */
-    public function __construct(array $data)
+    public function __construct(array $data, bool $incrementAmount = true)
     {
         $this->number = $data['number'];
+        $this->incrementAmount = $incrementAmount;
     }
 
     /**
@@ -35,11 +37,12 @@ class CalculateFactorialJob
             $result *= $i;
             $sequence[] = $i;
         }
-
-        JobAmount::firstOrCreate(
-            ['name' => 'factorial'],
-            ['amount' => 0],
-        )->increment('amount');
+        if ($this->incrementAmount) {
+            JobAmount::firstOrCreate(
+                ['name' => 'factorial'],
+                ['amount' => 0],
+            )->increment('amount');
+        }
 
         return [
             'result' => $result,

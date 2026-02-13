@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Models\JobAmount;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
 class CheckPerfectNumberJob
@@ -11,13 +10,15 @@ class CheckPerfectNumberJob
     use Queueable;
 
     private int $number;
+    protected bool $incrementAmount;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($data)
+    public function __construct($data, bool $incrementAmount = true)
     {
         $this->number = $data['number'];
+        $this->incrementAmount = $incrementAmount;
     }
 
     /**
@@ -35,10 +36,12 @@ class CheckPerfectNumberJob
             }
         }
 
-        JobAmount::firstOrCreate(
-            ['name' => 'perfect'],
-            ['amount' => 0],
-        )->increment('amount');
+        if ($this->incrementAmount) {
+            JobAmount::firstOrCreate(
+                ['name' => 'perfect'],
+                ['amount' => 0],
+            )->increment('amount');
+        }
 
         return [
             'result' => $sum === $this->number,

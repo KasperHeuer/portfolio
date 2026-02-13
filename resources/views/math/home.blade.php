@@ -1,4 +1,11 @@
 <x-math-layout>
+    <a href="{{ url('/') }}"
+        class="fixed top-6 left-6 z-50 group inline-flex items-center gap-2 px-4 py-2.5 bg-white rounded-full shadow-lg border border-gray-200 transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-gray-50">
+        <i class="fas fa-arrow-left text-gray-600 text-sm transition-transform duration-300 group-hover:-translate-x-1"
+            aria-hidden="true"></i>
+        <span class="text-sm font-semibold text-gray-700">Portfolio</span>
+    </a>
+
     <x-math-item name="Collatz Sequence" icon="random">
         Explore the intriguing Collatz conjecture with an interactive sequence generator. Visualize the steps and
         patterns in this famous unsolved problem.
@@ -28,7 +35,10 @@
         and math.
     </x-math-item>
 
-      <x-math-item name="Calculator" icon="calculator">
-        Use this calculator to perform basic arithmetic operations. Simply enter your expression and click "Calculate" to see the result.
+    <x-math-item name="Calculator" icon="calculator">
+        Use this calculator to perform basic arithmetic operations. Simply enter your expression and click "Calculate"
+        to see the result.
     </x-math-item>
+
+
 </x-math-layout>

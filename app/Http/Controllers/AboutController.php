@@ -15,8 +15,7 @@ class AboutController extends Controller
 
         $geboorte = mktime(0, 0, 0, 4, 3, 2007);
         $verschil = $huidig - $geboorte;
-        $jaren = (int) floor($verschil / 31557600); //60 * 60 * 24 * 365.25
-
+        $jaren = (int) floor($verschil / (60 * 60 * 24 * 365.25));
 
         $schoolEinde = mktime(0, 0, 0, 6, 28, 2027);
         $einde = $schoolEinde <= $huidig ? '2027' : 'heden';
@@ -28,6 +27,6 @@ class AboutController extends Controller
             ['amount' => 0],
         )->increment('amount');
 
-        return view('about', compact('aboutInfo'));
+        return view('about', compact('jaren', 'einde'));
     }
 }
