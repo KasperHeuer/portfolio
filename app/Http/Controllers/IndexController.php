@@ -10,9 +10,7 @@ class IndexController extends Controller
 {
     public function view(Request $request)
     {
-        $schoolEinde = mktime(0, 0, 0, 6, 28, 2027);
-        $huidig = time();
-        $einde = $schoolEinde <= $huidig ? '2027' : 'heden';
+        $einde = mktime(0, 0, 0, 6, 28, 2027) <= time() ? '2027' : 'heden';
 
         PageViews::firstOrCreate(
             ['name' => '/'],

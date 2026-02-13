@@ -30,9 +30,8 @@ class ContactController extends Controller
                 'email' => 'required|email|max:255',
                 'note'  => 'required|string',
             ]);
-            // Dispatch jobs after the response is sent
-            SaveContactJob::dispatchSync($data);
-            EmailContactJob::dispatchSync($data);
+            SaveContactJob::dispatch($data);
+            EmailContactJob::dispatch($data);
     
             return redirect()->back()->with('success', 'Contact saved successfully!');
         }

@@ -13,18 +13,14 @@ class CalculateCollatzJob
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected int $number;
+    protected bool $incrementAmount;
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct(array $data)
+    public function __construct(array $data, bool $incrementAmount = true)
     {
         $this->number = $data['number'];
+        $this->incrementAmount = $incrementAmount;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): array
     {
         $number = $this->number;
@@ -33,26 +29,16 @@ class CalculateCollatzJob
         $sequence = [$number];
 
         while ($number !== 1) {
-            if ($number % 2 === 0) {
-                $number = intdiv($number, 2);
-            } else {
-                $number = ($number * 3) + 1;
-            }
-
+            $number = ($number % 2 === 0) ? intdiv($number, 2) : ($number * 3 + 1);
             $sequence[] = $number;
-
-            if ($number > $maxValue) {
-                $maxValue = $number;
-            }
-
+            $maxValue = max($maxValue, $number);
             $steps++;
         }
 
-        JobAmount::firstOrCreate(
-            ['name' => 'collatz'],
-            ['amount' => 0],
-        )->increment('amount');
-        
+        if ($this->incrementAmount) {
+            JobAmount::firstOrCreate(['name' => 'collatz'], ['amount' => 0])->increment('amount');
+        }
+
         return [
             'sequence' => $sequence,
             'steps' => $steps,

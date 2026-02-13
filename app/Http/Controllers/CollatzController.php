@@ -29,7 +29,7 @@ class CollatzController extends Controller
                 'number' => 'required|integer|min:1',
             ]);
 
-            $result = CalculateCollatzJob::dispatchSync($data);
+            $result = CalculateCollatzJob::dispatchSync($data, true);
 
             return view('math.collatz', compact('result'));
         }

@@ -13,19 +13,27 @@ class ProjectController extends Controller
      */
     public function view(Request $request)
     {
-        $github = ['Laravel', 'PHP', 'JavaScript', 'HTML', 'CSS'];
-        $math   = ['Laravel', 'PHP', 'HTML', 'CSS'];
+        $github = collect(['Laravel', 'PHP', 'JavaScript', 'HTML', 'CSS'])
+            ->shuffle()
+            ->take(5)
+            ->values();
 
-        $codetalen = [
-            'github' => collect($github)->shuffle()->take(5)->values(),
-            'math'   => collect($math)->shuffle()->take(4)->values(),
-        ];
+        $math = collect(['Laravel', 'PHP', 'HTML', 'CSS'])
+            ->shuffle()
+            ->take(4)
+            ->values();
+
+        $casino = collect(['Laravel', 'PHP', 'HTML', 'CSS'])
+            ->shuffle()
+            ->take(4)
+            ->values();
+
 
         PageViews::firstOrCreate(
             ['name' => '/projects'],
             ['amount' => 0],
         )->increment('amount');
 
-        return view('projects', compact('codetalen'));
+        return view('projects', compact('github', 'math', 'casino'));
     }
 }

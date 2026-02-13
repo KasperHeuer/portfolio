@@ -4,7 +4,7 @@
         <img src="{{ asset('images/ich.jpg') }}" alt="ik" class="rounded-full w-72 md:w-80 ml-10">
         <div class="text-center md:text-left mt-6 md:mt-0">
             <h1 class="text-4xl md:text-5xl font-serif mb-2">Hallo ik ben Kasper Heuer</h1>
-            <p class="text-2xl md:text-3xl mb-4">Vertrouwd met HTML, CSS, PHP en MySQL</p>
+            <p class="text-2xl md:text-3xl mb-4">Vertrouwd met HTML, PHP, MySQL en CSS</p>
             <a href="{{ url('/contact') }}"
                 class="bg-red-800 hover:bg-red-700 transition transform hover:scale-105 px-6 py-3 rounded-full text-xl md:text-2xl inline-block">Neem
                 contact op</a>
@@ -12,27 +12,33 @@
     </section>
 
     <section class="flex flex-col md:flex-row gap-10 mt-16">
-        <div class="bg-[#1B1B1B] w-full md:w-1/2 p-4">
+        <div class="bg-[#1B1B1B] w-full md:w-1/2 p-4 mb-4">
             <x-chapter text="Talen" />
 
-            <div class="flex items-center gap-2">
-                <div class="w-24 md:w-32">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <div class="w-full sm:w-32">
                     <p class="text-xl mb-0">Nederlands</p>
                 </div>
-                <x-bar skill='7' />
+                <div class="w-full">
+                    <x-bar skill='7' />
+                </div>
             </div>
 
-            <div class="flex items-center gap-2 mt-4">
-                <div class="w-24 md:w-32">
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 mt-4">
+                <div class="w-full sm:w-32">
                     <p class="text-xl mb-0">Engels</p>
                 </div>
-                <x-bar skill='8' />
+                <div class="w-full">
+                    <x-bar skill='8' />
+                </div>
             </div>
+
         </div>
 
 
 
-        <div class="bg-[#1B1B1B] w-full md:w-1/2 p-4">
+        <div class="bg-[#1B1B1B] w-full md:w-1/2 p-4 mb-4">
             <x-chapter text="Opleidingen" />
 
             <div class="space-y-4">

@@ -6,31 +6,31 @@
             $skill = 1;
             break;
         case 2:
-            $skill = 10;
+            $skill = 5;
             break;
         case 3:
-            $skill = 15;
+            $skill = 10;
             break;
         case 4:
-            $skill = 20;
+            $skill = 15;
             break;
         case 5:
-            $skill = 25;
+            $skill = 20;
             break;
         case 6:
-            $skill = 30;
+            $skill = 25;
             break;
         case 7:
-            $skill = 35;
+            $skill = 30;
             break;
         case 8:
-            $skill = 40;
+            $skill = 35;
             break;
         case 9:
-            $skill = 45;
+            $skill = 40;
             break;
         case 10:
-            $skill = 50;
+            $skill = 45;
             break;
         default:
             $skill = 0;

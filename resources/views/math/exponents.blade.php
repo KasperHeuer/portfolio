@@ -27,40 +27,47 @@
                 Submit
             </button>
         </form>
-    </x-math-tool>
-
-    @if (isset($result))
-    <div class="w-full max-w-4xl mx-auto mt-12">
-        <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-12">
-            <h2 class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 text-center">
-                Calculation Result
-            </h2>
-            
-            <div class="flex items-center justify-center gap-4 text-2xl sm:text-3xl font-bold">
-                <!-- Base Number -->
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl blur opacity-25"></div>
-                    <div class="relative bg-gradient-to-br from-blue-500 to-purple-600 text-white px-5 py-3 rounded-xl shadow-lg">
-                        {{ $result['number'] }}
-                    </div>
-                </div>
-                
-                <!-- Exponent -->
-                <span class="text-gray-400 text-lg sm:text-xl align-super -ml-2">{{ $result['exponent'] }}</span>
-                
-                <!-- Equals Sign -->
-                <span class="text-gray-400 text-2xl">=</span>
-                
-                <!-- Result -->
-                <div class="relative group">
-                    <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-                    <div class="relative bg-gradient-to-br from-purple-600 to-pink-600 text-white px-5 py-3 rounded-xl shadow-lg hover:scale-105 transform transition-all duration-300">
-                        {{ $result['result'] }}
+        @if (isset($result))
+            <div class="w-full max-w-4xl mx-auto mt-12">
+                <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-12">
+                    <h2
+                        class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-8 text-center">
+                        Calculation Result
+                    </h2>
+    
+                    <div class="flex items-center justify-center gap-4 text-2xl sm:text-3xl font-bold">
+                        <!-- Base Number -->
+                        <div class="relative group">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl blur opacity-25">
+                            </div>
+                            <div
+                                class="relative bg-gradient-to-br from-blue-500 to-purple-600 text-white px-5 py-3 rounded-xl shadow-lg">
+                                {{ $result['number'] }}
+                            </div>
+                        </div>
+    
+                        <!-- Exponent -->
+                        <span class="text-gray-400 text-lg sm:text-xl align-super -ml-2">{{ $result['exponent'] }}</span>
+    
+                        <!-- Equals Sign -->
+                        <span class="text-gray-400 text-2xl">=</span>
+    
+                        <!-- Result -->
+                        <div class="relative group">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-300">
+                            </div>
+                            <div
+                                class="relative bg-gradient-to-br from-purple-600 to-pink-600 text-white px-5 py-3 rounded-xl shadow-lg hover:scale-105 transform transition-all duration-300">
+                                {{ $result['result'] }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endif
+        @endif
+    </x-math-tool>
+
 
 </x-math-tool-layout>

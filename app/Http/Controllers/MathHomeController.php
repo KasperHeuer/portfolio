@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\PageViews;
-use Illuminate\Http\Request;
 
 class MathHomeController extends Controller
 {
