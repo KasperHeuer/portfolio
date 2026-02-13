@@ -8,7 +8,7 @@ use App\Jobs\CalculateExponentJob;
 use App\Jobs\CalculateFactorialJob;
 use App\Jobs\CalculateFibonacciJob;
 use App\Jobs\CheckPerfectNumberJob;
-use App\Models\Casino;
+use App\Models\casino;
 use App\Models\Contact;
 use App\Models\JobAmount;
 use App\Models\PageViews;
@@ -33,7 +33,7 @@ class DashboardController extends Controller
 
     private function getCasinoInfo()
     {
-        return Casino::orderBy('updated_at', 'desc')->get();
+        return casino::orderBy('updated_at', 'desc')->get();
     }
 
     /**
