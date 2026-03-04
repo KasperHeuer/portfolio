@@ -147,9 +147,9 @@
                         <tbody>
                             @foreach ($data['casinoGames'] as $casinoGame)
                                 <tr class="border-b border-gray-800 hover:bg-black/30 transition-colors duration-200">
-                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->casino_game }}</td>
-                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->amount_played }}</td>
-                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->amount_won }}</td>
+                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->casinoGame }}</td>
+                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->AmountPlayed }}</td>
+                                    <td class="py-3 px-4 text-gray-200">{{ $casinoGame->AmountWon }}</td>
                                     <td class="py-3 px-4 text-gray-200">{{ $casinoGame->updated_at }}</td>
                                 </tr>
                             @endforeach

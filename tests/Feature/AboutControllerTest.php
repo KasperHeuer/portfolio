@@ -18,11 +18,9 @@ class AboutControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('about');
 
-        $aboutInfo = $response->viewData('aboutInfo');
-        $this->assertIsArray($aboutInfo);
-        $this->assertCount(2, $aboutInfo);
+        $jaren = $response->viewData('jaren');
+        $einde = $response->viewData('einde');
 
-        [$jaren, $einde] = $aboutInfo;
         $this->assertIsInt($jaren);
         $this->assertGreaterThan(0, $jaren);
 
