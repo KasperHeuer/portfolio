@@ -18,11 +18,13 @@ class ProjectControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('projects');
 
-        $codetalen = $response->viewData('codetalen');
-        $this->assertArrayHasKey('github', $codetalen);
-        $this->assertArrayHasKey('math', $codetalen);
-        $this->assertCount(5, $codetalen['github']);
-        $this->assertCount(4, $codetalen['math']);
+        $github = $response->viewData('github');
+        $math = $response->viewData('math');
+        $casino = $response->viewData('casino');
+
+        $this->assertCount(5, $github);
+        $this->assertCount(4, $math);
+        $this->assertCount(4, $casino);
 
         $this->assertDatabaseHas('page_amount', [
             'name' => '/projects',

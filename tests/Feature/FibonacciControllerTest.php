@@ -42,7 +42,7 @@ class FibonacciControllerTest extends TestCase
         });
 
         $this->assertDatabaseHas('jobs_amount', [
-            'name' => 'fobonacci',
+            'name' => 'fibonacci',
             'amount' => 1,
         ]);
     }
