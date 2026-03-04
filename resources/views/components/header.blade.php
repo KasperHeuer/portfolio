@@ -5,7 +5,7 @@
     </div>
 
     <nav aria-label="Main navigation"
-        class="flex flex-col md:flex-row gap-1 mt-2 md:mt-0 text-base md:text-2xl lg:text-[2.75rem] md:justify-end md:items-center w-full md:pr-8">
+        class="flex flex-col md:flex-row gap-1 mt-2 md:mt-0 text-sm md:text-xl lg:text-[2.5rem] md:justify-end md:items-center w-full md:pr-8">
         <a href="{{ url('/') }}"
             class="px-3 py-1 transition-colors hover:text-gray-300 {{ request()->is('/') ? 'border-b-2 border-red-800' : '' }} flex items-center mb-3 md:mb-0 ">
             Home
