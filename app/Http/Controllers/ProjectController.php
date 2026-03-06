@@ -28,12 +28,17 @@ class ProjectController extends Controller
             ->take(4)
             ->values();
 
+        $tolkien = collect(['Laravel', 'PHP', 'HTML', 'CSS'])
+            ->shuffle()
+            ->take(4)
+            ->values();
+
 
         PageViews::firstOrCreate(
             ['name' => '/projects'],
             ['amount' => 0],
         )->increment('amount');
 
-        return view('projects', compact('github', 'math', 'casino'));
+        return view('projects', compact('github', 'math', 'casino', 'tolkien'));
     }
 }

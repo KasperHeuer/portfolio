@@ -17,15 +17,14 @@
         font-style: normal;
     }
 
-    /* Optional: create a utility class for Tailwind usage */
     .font-ringbearer {
         font-family: 'RingbearerMedium', serif;
     }
 </style>
 
-<body class="bg-black font-serif text-white w-full">
+<body class="bg-black font-serif text-white min-h-screen">
     <x-header />
-    <main class="w-full max-w-full mx-auto px-4 md:px-0">
+    <main class="w-full max-w-screen-2xl mx-auto px-6 md:px-12 lg:px-20">
         {{ $slot }}
     </main>
 </body>
