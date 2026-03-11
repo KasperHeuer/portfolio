@@ -3,7 +3,7 @@
 
     {{-- Left: back to portfolio --}}
     <div class="absolute top-6 left-6">
-        <x-tolkien-link href="{{ route('index') }}" icon="left">portfolio</x-tolkien-link>
+        <x-tolkien-link href="{{ route('index') }}" icon="left">return to portfolio</x-tolkien-link>
     </div>
 
     {{-- Right: auth actions --}}
@@ -18,7 +18,7 @@
                 <span class="text-gold/20 text-xs">|</span>
             @endif
 
-            <x-tolkien-link href="{{ route('tolkien.logout') }}" icon="right">depart</x-tolkien-link>
+            <x-tolkien-link href="{{ route('tolkien.logout') }}" icon="right">depart to valinor</x-tolkien-link>
 
         </div>
     @endif

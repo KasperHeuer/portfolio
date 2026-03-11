@@ -106,9 +106,13 @@ Route::prefix('tolkien')->group(function () {
     Route::get('/family/create', [TolkienFamilyController::class, 'create'])->name('tolkien.family.create');
     Route::post('/family/create', [TolkienFamilyController::class, 'store'])->name('tolkien.family.store');
 
+    Route::get('/family/view/{class_id}', [TolkienFamilyController::class, 'view'])->name('tolkien.family.view');
+
 
     Route::get('/item/create', [TolkienItemController::class, 'create'])->name('tolkien.item.create');
     Route::post('/item/create', [TolkienItemController::class, 'store'])->name('tolkien.item.store');
+
+    Route::get('/item/view/{family_id}', [TolkienItemController::class, 'view'])->name('tolkien.item.view');
 });
 
 
