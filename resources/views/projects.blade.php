@@ -41,10 +41,39 @@
                     </div>
                 </div>
 
-
-                <!-- Project: Math -->
+                <!-- Project: Tolkien -->
                 <div
                     class="flex flex-col lg:flex-row-reverse items-center gap-8 bg-white/5 rounded-xl p-8 hover:bg-white/10 transition-all duration-300">
+
+                    <div
+                        class="flex-1 flex items-center justify-center bg-gray-500/20 rounded-lg p-8 h-[250px] lg:h-[300px]">
+                        <img src="{{ asset('images/tolkien.png') }}" alt="Tolkien logo"
+                            class="max-w-full max-h-full object-contain">
+                    </div>
+
+                    <div class="flex-1 flex flex-col gap-4">
+                        <a href="{{ route('tolkien.home') }}"
+                            class="text-white text-3xl font-ringbearer md:text-4xl hover:text-red-800 transition-colors duration-300 underline decoration-2 underline-offset-4">
+                            Tolkien
+                        </a>
+
+                        <p class="text-zinc-300 text-lg md:text-xl leading-relaxed">
+                            Een verzameling projecten geïnspireerd op de werken van J.R.R. Tolkien, gebouwd met laravel.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            @foreach (collect($tolkien)->flatten() as $taal)
+                                <span
+                                    class="bg-red-800/20 text-red-300 px-4 py-2 rounded-full text-sm border border-red-800/30">
+                                    {{ $taal }}
+                                </span>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <!-- Project: Math -->
+                <div
+                    class="flex flex-col lg:flex-row items-center gap-8 bg-white/5 rounded-xl p-8 hover:bg-white/10 transition-all duration-300">
 
                     <div
                         class="flex-1 flex items-center justify-center bg-gray-500/20 rounded-lg p-8 h-[250px] lg:h-[300px]">
@@ -73,36 +102,7 @@
                     </div>
                 </div>
 
-                <!-- Project: Tolkien -->
-                <div
-                    class="flex flex-col lg:flex-row items-center gap-8 bg-white/5 rounded-xl p-8 hover:bg-white/10 transition-all duration-300">
 
-                    <div
-                        class="flex-1 flex items-center justify-center bg-gray-500/20 rounded-lg p-8 h-[250px] lg:h-[300px]">
-                        <img src="{{ asset('images/tolkien.png') }}" alt="Tolkien logo"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-
-                    <div class="flex-1 flex flex-col gap-4">
-                        <a href="{{ route('tolkien.home') }}"
-                            class="text-white text-3xl font-ringbearer md:text-4xl hover:text-red-800 transition-colors duration-300 underline decoration-2 underline-offset-4">
-                            Tolkien
-                        </a>
-
-                        <p class="text-zinc-300 text-lg md:text-xl leading-relaxed">
-                            Een verzameling projecten geïnspireerd op de werken van J.R.R. Tolkien, gebouwd met laravel.
-                        </p>
-
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            @foreach (collect($tolkien)->flatten() as $taal)
-                                <span
-                                    class="bg-red-800/20 text-red-300 px-4 py-2 rounded-full text-sm border border-red-800/30">
-                                    {{ $taal }}
-                                </span>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Project: Casino/Blackjack -->
                 <div

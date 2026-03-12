@@ -102,16 +102,17 @@ Route::prefix('tolkien')->group(function () {
 
     Route::get('/class/create', [TolkienClassController::class, 'create'])->name('tolkien.class.create');
     Route::post('/class/create', [TolkienClassController::class, 'store'])->name('tolkien.class.store');
+    Route::get('/class/delete/{class_id}', [TolkienClassController::class, 'delete'])->name('tolkien.class.delete');
 
     Route::get('/family/create', [TolkienFamilyController::class, 'create'])->name('tolkien.family.create');
     Route::post('/family/create', [TolkienFamilyController::class, 'store'])->name('tolkien.family.store');
-
+    Route::get('/family/delete/{family_id}', [TolkienFamilyController::class, 'delete'])->name('tolkien.family.delete');
     Route::get('/family/view/{class_id}', [TolkienFamilyController::class, 'view'])->name('tolkien.family.view');
 
 
     Route::get('/item/create', [TolkienItemController::class, 'create'])->name('tolkien.item.create');
     Route::post('/item/create', [TolkienItemController::class, 'store'])->name('tolkien.item.store');
-
+    Route::get('/item/delete/{item_id}', [TolkienItemController::class, 'delete'])->name('tolkien.item.delete');
     Route::get('/item/view/{family_id}', [TolkienItemController::class, 'view'])->name('tolkien.item.view');
 });
 

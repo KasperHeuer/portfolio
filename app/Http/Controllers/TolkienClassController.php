@@ -10,6 +10,9 @@ class TolkienClassController extends Controller
 {
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect()->route('tolkien.register');
+        }
         return view('tolkien.class.create');
     }
 
@@ -32,5 +35,19 @@ class TolkienClassController extends Controller
         return redirect()
             ->route('tolkien.home')
             ->with('success', 'Class created successfully!');
+    }
+
+    public function delete($class_id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('tolkien.register');
+        }
+
+        $class = TolkienClass::findOrFail($class_id);
+        $class->delete();
+
+        return redirect()
+            ->route('tolkien.home')
+            ->with('success', 'Class deleted successfully!');
     }
 }

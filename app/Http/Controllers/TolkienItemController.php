@@ -11,6 +11,9 @@ class TolkienItemController extends Controller
 {
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect()->route('tolkien.register');
+        }
         $families = tolkienFamily::get();
         return view('tolkien.item.create', compact('families'));
     }
@@ -40,9 +43,26 @@ class TolkienItemController extends Controller
 
     public function view(int $family_id)
     {
+        if (!Auth::check()) {
+            return redirect()->route('tolkien.register');
+        }
         $data = tolkienItem::where('familiy_id', $family_id)->get();
         $family_name = tolkienFamily::where('id', $family_id)->value('name');
 
         return view('tolkien.item.view', compact('data', 'family_name'));
+    }
+
+    public function delete(int $item_id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('tolkien.register');
+        }
+
+        $item = tolkienItem::findOrFail($item_id);
+        $item->delete();
+
+        return redirect()
+            ->route('tolkien.home')
+            ->with('success', 'Item deleted successfully!');
     }
 }
