@@ -1,10 +1,5 @@
 <x-tolkien-layout>
-    <div class="mb-6">
-        <a href="{{ route('tolkien.home') }}"
-            class="text-gold/40 hover:text-gold/60 text-sm font-fell italic transition-colors duration-300">
-            ← Return to home
-        </a>
-    </div>
+
     {{-- Chapter heading --}}
     <div class="text-center mb-10">
         <div class="flex items-center justify-center gap-3 mb-4">
@@ -22,7 +17,12 @@
             <div class="h-px w-24 bg-gradient-to-l from-transparent to-gold/30"></div>
         </div>
     </div>
-
+    <div class="mb-6">
+        <a href="{{ route('tolkien.home') }}"
+            class="text-gold/40 hover:text-gold/60 text-sm font-fell italic transition-colors duration-300">
+            ← Return to home
+        </a>
+    </div>
     {{-- Items --}}
     <div class="flex flex-col gap-6 max-w-4xl mx-auto">
         @if ($data->isNotEmpty())

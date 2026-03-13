@@ -1,10 +1,5 @@
 <x-tolkien-layout>
-    <div class="mb-6">
-        <a href="{{ route('tolkien.home') }}"
-            class="text-gold/40 hover:text-gold/60 text-sm font-fell italic transition-colors duration-300">
-            ← Return to home
-        </a>
-    </div>
+
     {{-- Chapter heading --}}
     <div class="text-center mb-10">
         <div class="flex items-center justify-center gap-3 mb-4">
@@ -12,6 +7,7 @@
             <span class="text-gold/40 text-xs">✦</span>
             <div class="h-px w-12 bg-gradient-to-l from-transparent to-gold/50"></div>
         </div>
+
         <h2
             class="font-ringbearer text-gold/80 text-5xl md:text-6xl tracking-wide drop-shadow-[0_2px_8px_rgba(201,168,76,0.3)]">
             {{ $class_name }}
@@ -21,6 +17,12 @@
             <span class="text-gold/25 text-xs">❧</span>
             <div class="h-px w-24 bg-gradient-to-l from-transparent to-gold/30"></div>
         </div>
+    </div>
+    <div class="mb-6">
+        <a href="{{ route('tolkien.home') }}"
+            class="text-gold/40 hover:text-gold/60 text-sm font-fell italic transition-colors duration-300">
+            ← Return to home
+        </a>
     </div>
 
     {{-- Items --}}
