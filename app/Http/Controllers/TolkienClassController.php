@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PageViews;
 use App\Models\TolkienClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,10 @@ class TolkienClassController extends Controller
         if (!Auth::check()) {
             return redirect()->route('tolkien.register');
         }
+        PageViews::firstOrCreate(
+            ['name' => '/tolkien/class/create'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('tolkien.class.create');
     }
 
