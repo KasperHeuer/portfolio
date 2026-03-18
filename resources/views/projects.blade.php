@@ -58,7 +58,7 @@
                         </a>
 
                         <p class="text-zinc-300 text-lg md:text-xl leading-relaxed">
-                            Een verzameling projecten geïnspireerd op de werken van J.R.R. Tolkien, gebouwd met laravel.
+                            Een interactieve webapplicatie geïnspireerd op de werken van J.R.R. Tolkien, met  informatie over de lore uit Middle-earth.
                         </p>
 
                         <div class="flex flex-wrap gap-2 mt-2">
