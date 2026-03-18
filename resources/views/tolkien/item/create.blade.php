@@ -1,0 +1,36 @@
+<x-tolkien-layout title="Add item">
+    <x-tolkien-form submitText="Add item" :route="route('tolkien.item.store')">
+        <div class="mb-5">
+            <label for="familiy_id" class="block font-fell italic text-gold-light/80 text-sm tracking-widest mb-1.5">
+                Family
+            </label>
+            <div class="relative">
+                <select name="familiy_id"
+                    class="w-full appearance-none bg-shadow/80 text-parchment font-fell italic
+                           border border-gold/25 rounded-sm
+                           px-4 py-2.5 text-base
+                           focus:outline-none focus:border-gold/70 focus:ring-1 focus:ring-gold/30
+                           hover:border-gold/40
+                           shadow-[inset_0_2px_8px_rgba(0,0,0,0.4)]
+                           transition-all duration-200
+                           cursor-pointer">
+                    @if ($families->isnotEmpty())
+                        @foreach ($families as $family)
+                            <option value="{{ $family['id'] }}" class="bg-shadow text-parchment not-italic">
+                                {{ $family['name'] }}
+                            </option>
+                        @endforeach
+                    @else
+                        <option value="" disabled class="bg-shadow text-parchment not-italic">
+                            No families available. Please add a family first.
+                        </option>
+                    @endif
+                </select>
+                <span
+                    class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gold/40 text-xs">❧</span>
+            </div>
+        </div>
+        <x-tolkien-input name="name" type="text" placeholder="Item Name" :value="old('name')" />
+        <x-tolkien-textarea name="description" placeholder="Write the description here..." />
+    </x-tolkien-form>
+</x-tolkien-layout>

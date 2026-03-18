@@ -17,8 +17,13 @@ use App\Http\Controllers\{
     MathHomeController,
     PerfectNumberController,
     ProjectController,
+    TolkienClassController,
+    TolkienController,
+    TolkienFamilyController,
+    TolkienItemController,
     WisdomController
 };
+use Illuminate\Support\Facades\Auth;
 
 // index
 Route::get('/', [IndexController::class, 'view'])->name('index');
@@ -78,6 +83,39 @@ Route::prefix('casino')->group(function () {
     Route::get('/blackjack/reset', [blackjackController::class, 'reset'])->name('blackjack.reset');
 });
 
+Route::prefix('tolkien')->group(function () {
+    Route::get('/register', [TolkienController::class, 'register'])->name('tolkien.register');
+    Route::post('/register', [TolkienController::class, 'store'])->name('tolkien.create');
+
+    Route::get('/login', [TolkienController::class, 'login'])->name('tolkien.login');
+    Route::post('/login', [TolkienController::class, 'authenticate'])->name('tolkien.authenticate');
+
+    Route::get('/home', [TolkienController::class, 'index'])->name('tolkien.home');
+
+    Route::get('/logout', function () {
+        Auth::logout();
+        return redirect()->route('tolkien.home');
+    })->name('tolkien.logout');
+
+
+    Route::get('/select', [TolkienController::class, 'select'])->name('tolkien.select');
+
+    Route::get('/class/create', [TolkienClassController::class, 'create'])->name('tolkien.class.create');
+    Route::post('/class/create', [TolkienClassController::class, 'store'])->name('tolkien.class.store');
+    Route::get('/class/delete/{class_id}', [TolkienClassController::class, 'delete'])->name('tolkien.class.delete');
+
+    Route::get('/family/create', [TolkienFamilyController::class, 'create'])->name('tolkien.family.create');
+    Route::post('/family/create', [TolkienFamilyController::class, 'store'])->name('tolkien.family.store');
+    Route::get('/family/delete/{family_id}', [TolkienFamilyController::class, 'delete'])->name('tolkien.family.delete');
+    Route::get('/family/view/{class_id}', [TolkienFamilyController::class, 'view'])->name('tolkien.family.view');
+
+
+    Route::get('/item/create', [TolkienItemController::class, 'create'])->name('tolkien.item.create');
+    Route::post('/item/create', [TolkienItemController::class, 'store'])->name('tolkien.item.store');
+    Route::get('/item/delete/{item_id}', [TolkienItemController::class, 'delete'])->name('tolkien.item.delete');
+    Route::get('/item/view/{family_id}', [TolkienItemController::class, 'view'])->name('tolkien.item.view');
+});
+
 
 Route::get('/dashboard', DashboardController::class)
     ->name('dashboard.login');
@@ -87,4 +125,3 @@ Route::post('/dashboard', DashboardController::class)
 
 Route::get('/dashboard/home', [DashboardController::class, 'home'])
     ->name('dashboard.home');
-
