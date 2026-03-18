@@ -7,7 +7,7 @@ use App\Models\tolkienClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class tolkienClassController extends Controller
+class TolkienClassController extends Controller
 {
     public function create()
     {
