@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\PageViews;
-use App\Models\TolkienClass;
+use App\Models\tolkienClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TolkienClassController extends Controller
+class tolkienClassController extends Controller
 {
     public function create()
     {
@@ -32,7 +32,7 @@ class TolkienClassController extends Controller
             'description' => 'required|string',
         ]);
 
-        TolkienClass::create([
+        tolkienClass::create([
             'name' => $data['name'],
             'description' => $data['description'],
         ]);
@@ -48,7 +48,7 @@ class TolkienClassController extends Controller
             return redirect()->route('tolkien.register');
         }
 
-        $class = TolkienClass::findOrFail($class_id);
+        $class = tolkienClass::findOrFail($class_id);
         $class->delete();
 
         return redirect()
