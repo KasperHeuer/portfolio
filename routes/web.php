@@ -17,7 +17,7 @@ use App\Http\Controllers\{
     MathHomeController,
     PerfectNumberController,
     ProjectController,
-    tolkienClassController,
+    TolkienClassController,
     TolkienController,
     TolkienFamilyController,
     TolkienItemController,
@@ -100,9 +100,9 @@ Route::prefix('tolkien')->group(function () {
 
     Route::get('/select', [TolkienController::class, 'select'])->name('tolkien.select');
 
-    Route::get('/class/create', [tolkienClassController::class, 'create'])->name('tolkien.class.create');
-    Route::post('/class/create', [tolkienClassController::class, 'store'])->name('tolkien.class.store');
-    Route::get('/class/delete/{class_id}', [tolkienClassController::class, 'delete'])->name('tolkien.class.delete');
+    Route::get('/class/create', [TolkienClassController::class, 'create'])->name('tolkien.class.create');
+    Route::post('/class/create', [TolkienClassController::class, 'store'])->name('tolkien.class.store');
+    Route::get('/class/delete/{class_id}', [TolkienClassController::class, 'delete'])->name('tolkien.class.delete');
 
     Route::get('/family/create', [TolkienFamilyController::class, 'create'])->name('tolkien.family.create');
     Route::post('/family/create', [TolkienFamilyController::class, 'store'])->name('tolkien.family.store');
