@@ -125,3 +125,10 @@ Route::post('/dashboard', DashboardController::class)
 
 Route::get('/dashboard/home', [DashboardController::class, 'home'])
     ->name('dashboard.home');
+
+
+Route::prefix('lottie')->group(function () {
+    Route::get('/home', function () {
+        return view('lottie.home');
+    })->name('lottie.home');
+});
