@@ -55,10 +55,9 @@
                     </div>
 
                     <p
-                        class="font-fell italic text-parchment/60 group-hover:text-parchment/70 text-base leading-relaxed transition-colors duration-300">
+                        class="font-fell italic text-parchment/60 group-hover:text-parchment/70 text-base leading-relaxed transition-colors duration-300 whitespace-pre-wrap">
                         {{ $item->description }}
                     </p>
-
                     @if (Auth::user()->permission_level > 2)
                         <div class="flex justify-end mt-2">
                             <a href="{{ route('tolkien.item.delete', ['item_id' => $item->id]) }}"
