@@ -13,14 +13,8 @@ class TolkienController extends Controller
 
     public function index()
     {
-        if (Auth::check()) {
-            $items = tolkienClass::all();
-            PageViews::firstOrCreate(
-                ['name' => '/tolkien/home'],
-                ['amount' => 0],
-            )->increment('amount');
-            return view('tolkien.home', compact('items'));
-        }
+        $items = tolkienClass::all();
+        return view('tolkien.home', compact('items'));
 
         return redirect()->route('tolkien.register');
     }

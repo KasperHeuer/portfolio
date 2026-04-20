@@ -1,6 +1,6 @@
 <x-layout title="About me">
     <section class="bg-black min-h-screen py-12 px-8">
-        <div class="max-w-[115rem] mx-auto flex flex-col gap-16">
+        <div class="flex flex-col gap-16">
 
             <div class="flex flex-col lg:flex-row items-center lg:items-start gap-16">
                 <div class="flex-1 flex flex-col items-center lg:items-start gap-8">
@@ -202,6 +202,5 @@
             </div>
         </div>
 
-        </div>
     </section>
 </x-layout>
