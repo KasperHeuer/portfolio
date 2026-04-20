@@ -12,11 +12,8 @@ class TolkienController extends Controller
 
     public function index()
     {
-        if (Auth::check()) {
-
-            $items = tolkienClass::all();
-            return view('tolkien.home', compact('items'));
-        }
+        $items = tolkienClass::all();
+        return view('tolkien.home', compact('items'));
 
         return redirect()->route('tolkien.register');
     }
