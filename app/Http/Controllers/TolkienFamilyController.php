@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PageViews;
 use App\Models\tolkienClass;
 use App\Models\tolkienFamily;
 use Illuminate\Http\Request;
@@ -11,7 +12,14 @@ class TolkienFamilyController extends Controller
 {
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect()->route('tolkien.register');
+        }
         $classes = tolkienClass::get();
+        PageViews::firstOrCreate(
+            ['name' => '/tolkien/family/create'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('tolkien.family.create', compact("classes"));
     }
 
@@ -42,8 +50,27 @@ class TolkienFamilyController extends Controller
 
     public function view(int $class_id)
     {
+
+        if (!Auth::check()) {
+            return redirect()->route('tolkien.register');
+        }
         $data = tolkienFamily::where('class_id', $class_id)->get();
         $class_name = tolkienClass::where('id', $class_id)->value('name');
+        PageViews::firstOrCreate(
+            ['name' => "/tolkien/family/view/$class_id"],
+            ['amount' => 0],
+        )->increment('amount');
         return view('tolkien.family.view', compact('data', 'class_name'));
+    }
+
+    public function delete(int $family_id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('tolkien.register');
+        }
+        tolkienFamily::where('id', $family_id)->delete();
+        return redirect()
+            ->route('tolkien.home')
+            ->with('success', 'Family deleted successfully!');
     }
 }

@@ -16,11 +16,17 @@
                            shadow-[inset_0_2px_8px_rgba(0,0,0,0.4)]
                            transition-all duration-200
                            cursor-pointer">
-                    @foreach ($classes as $class)
-                        <option value="{{ $class['id'] }}" class="bg-shadow text-parchment not-italic">
-                            {{ $class['name'] }}
+                    @if ($classes->isnotEmpty())
+                        @foreach ($classes as $class)
+                            <option value="{{ $class['id'] }}" class="bg-shadow text-parchment not-italic">
+                                {{ $class['name'] }}
+                            </option>
+                        @endforeach
+                    @else
+                        <option value="" disabled class="bg-shadow text-parchment not-italic">
+                            No classes available. Please add a class first.
                         </option>
-                    @endforeach
+                    @endif
                 </select>
                 <span
                     class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gold/40 text-xs">❧</span>

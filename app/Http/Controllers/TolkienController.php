@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PageViews;
 use App\Models\tolkienClass;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,10 @@ class TolkienController extends Controller
 
     public function register()
     {
+        PageViews::firstOrCreate(
+            ['name' => '/tolkien/register'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('tolkien.register');
     }
     public function store(Request $request)
@@ -43,6 +48,10 @@ class TolkienController extends Controller
 
     public function login()
     {
+        PageViews::firstOrCreate(
+            ['name' => '/tolkien/login'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('tolkien.login');
     }
 
@@ -68,6 +77,11 @@ class TolkienController extends Controller
         if (!Auth::check()) {
             return redirect()->route('tolkien.register');
         }
+
+        PageViews::firstOrCreate(
+            ['name' => '/tolkien/select'],
+            ['amount' => 0],
+        )->increment('amount');
         return view('tolkien.select');
     }
 }
