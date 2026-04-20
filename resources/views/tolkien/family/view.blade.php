@@ -61,7 +61,7 @@
                             class="font-fell italic text-parchment/60 group-hover:text-parchment/70 text-base leading-relaxed transition-colors duration-300">
                             {{ $item->description }}
                         </p>
-                        @if (Auth::user()->permission_level > 2)
+                        @if (Auth::check() && Auth::user()->permission_level > 2)
                             <div class="flex justify-end mt-2">
                                 <a href="{{ route('tolkien.family.delete', ['family_id' => $item->id]) }}"
                                     onclick="return confirm('Are you sure you wish to delete \'{{ addslashes($item->name) }}\'? This cannot be undone.')"

@@ -48,9 +48,6 @@ class TolkienItemController extends Controller
 
     public function view(int $family_id)
     {
-        if (!Auth::check()) {
-            return redirect()->route('tolkien.register');
-        }
         $data = tolkienItem::where('familiy_id', $family_id)->get();
         $family_name = tolkienFamily::where('id', $family_id)->value('name');
 

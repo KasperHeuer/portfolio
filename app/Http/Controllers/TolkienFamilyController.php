@@ -51,9 +51,6 @@ class TolkienFamilyController extends Controller
     public function view(int $class_id)
     {
 
-        if (!Auth::check()) {
-            return redirect()->route('tolkien.register');
-        }
         $data = tolkienFamily::where('class_id', $class_id)->get();
         $class_name = tolkienClass::where('id', $class_id)->value('name');
         PageViews::firstOrCreate(
