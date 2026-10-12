@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     FactorialController,
     FibonacciController,
     IndexController,
+    KanBanController,
     MathHomeController,
     PerfectNumberController,
     ProjectController,
@@ -116,6 +117,20 @@ Route::prefix('tolkien')->group(function () {
     Route::get('/item/view/{family_id}', [TolkienItemController::class, 'view'])->name('tolkien.item.view');
 });
 
+Route::prefix("kanban")->group(function () {
+    Route::get("/", [KanBanController::class, 'index'])->name("kanban.index");
+    Route::get("/view/{item_id}", [KanBanController::class, "view"])->name("kanban.view");
+
+    Route::get("/status/create", [KanBanController::class, "statusForm"])->name("status.form");
+    Route::post("/status/create", [KanBanController::class, "createStatus"])->name("status.create");
+
+    Route::get("/item/create", [KanbanController::class, "itemForm"])->name("item.form");
+    Route::post("/item/create", [KanBanController::class, "createItem"])->name("item.create");
+
+    Route::post("/item/increase", [KanBanController::class, "increaseItem"])->name("item.increase");
+    Route::post("/item/decrease", [KanBanController::class, "decreaseItem"])->name("item.decrease");
+});
+
 
 Route::get('/dashboard', DashboardController::class)
     ->name('dashboard.login');
@@ -125,10 +140,3 @@ Route::post('/dashboard', DashboardController::class)
 
 Route::get('/dashboard/home', [DashboardController::class, 'home'])
     ->name('dashboard.home');
-
-
-Route::prefix('lottie')->group(function () {
-    Route::get('/home', function () {
-        return view('lottie.home');
-    })->name('lottie.home');
-});
