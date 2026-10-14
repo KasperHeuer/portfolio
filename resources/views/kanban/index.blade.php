@@ -1,4 +1,10 @@
-<x-kanban-layout>
+<?php
+$statuses = $data['statuses'];
+$statusDropdown = $data['statusDropdown'];
+$items = $data['items'];
+$products = $data['products'];
+?>
+<x-kanban-layout :paymentOverview="$data['paymentOverview']">
     <div class="flex items-start gap-4 overflow-x-auto pb-4">
         <?php $fistStatusId = $statuses[0]->id;
         $lastStatusId = collect($statuses)->last()->id; ?>
@@ -9,7 +15,7 @@
             <x-kanban-list :title="$status->title" :colour="$status->colour" :count="count($statusItems)">
                 @forelse ($statusItems as $item)
                     <x-kanban-item :id="$item->id" :title="$item->title" :description="$item->description" :products="$products[$item->id] ?? []"
-                        :currentStatusId="$item->kan_ban_status_model_id" :fistStatusId="$fistStatusId" :lastStatusId="$lastStatusId" />
+                        :status_dropdown="$statusDropdown" :status_id="$item->kan_ban_status_model_id" />
                 @empty
                     <p
                         class="rounded-lg border border-dashed border-zinc-800 px-3 py-6 text-center text-sm text-zinc-500">

@@ -1,4 +1,4 @@
-<x-kanban-layout>
+<x-kanban-layout :paymentOverview="$paymentOverview">
     <x-kanban-form title="Nieuw item">
         <x-kanban-input label="Item naam" name="title" />
         <x-kanban-input type="textarea" label="Item beschrijving" name="description" />
