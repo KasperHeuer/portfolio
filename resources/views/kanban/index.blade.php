@@ -3,12 +3,12 @@ $statuses = $data['statuses'];
 $statusDropdown = $data['statusDropdown'];
 $items = $data['items'];
 $products = $data['products'];
+
+$firstStatusId = $statuses->first()?->id ?? '';
+$lastStatusId = $statuses->last()?->id ?? '';
 ?>
 <x-kanban-layout :paymentOverview="$data['paymentOverview']">
     <div class="flex items-start gap-4 overflow-x-auto pb-4">
-        <?php $fistStatusId = $statuses[0]->id;
-        $lastStatusId = collect($statuses)->last()->id; ?>
-
         @forelse ($statuses as $status)
             @php($statusItems = $items[$status->id] ?? [])
 
