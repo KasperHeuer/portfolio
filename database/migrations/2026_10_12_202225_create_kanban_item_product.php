@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("description");
             $table->integer("cost");
             $table->integer("amount");
+            $table->integer("amount_paid_for")->default(0);
             $table->foreignIdFor(KanBanItemModel::class)->onDelete('cascade');
             $table->timestamps();
         });

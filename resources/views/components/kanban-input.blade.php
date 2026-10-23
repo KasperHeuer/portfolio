@@ -1,4 +1,4 @@
-@props(['type' => 'text', 'label', 'name', 'required' => true])
+@props(['type' => 'text', 'label' => '', 'name', 'required' => true, 'value' => ''])
 
 @php
     $field =
@@ -10,13 +10,14 @@
     <span class="block text-sm font-medium text-zinc-300">{{ $label }}</span>
 
     @if ($type === 'textarea')
-        <textarea name="{{ $name }}" rows="4" placeholder="{{ $label }}" class="{{ $field }}"></textarea>
+        <textarea name="{{ $name }}" rows="4" placeholder="{{ $label }}" class="{{ $field }}">{{ $value }}</textarea>
     @elseif ($type === 'color')
         <input type="color" name="{{ $name }}" @if ($required) required @endif
-            class="block h-10 w-16 cursor-pointer rounded-lg border border-zinc-700 bg-zinc-800 p-1" />
+            class="block h-10 w-16 cursor-pointer rounded-lg border border-zinc-700 bg-zinc-800 p-1"
+            value="{{ $value }}" />
     @else
         <input type="{{ $type }}" name="{{ $name }}" placeholder="{{ $label }}"
             @if ($required) required @endif @if ($type === 'number') min="1" @endif
-            class="{{ $field }}" />
+            class="{{ $field }}" value="{{ $value }}" />
     @endif
 </label>
