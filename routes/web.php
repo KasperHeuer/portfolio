@@ -131,6 +131,12 @@ Route::prefix("kanban")->group(function () {
     Route::post("/product/change_amount_paid_for", [KanBanController::class, "changeAmountPaidFor"])->name("product.change_amount_paid_for");
 
 
+    Route::get("/product/edit/{product_id}", [KanBanController::class, "productForm"])->name("product.edit");
+    Route::post("/product/edit", [KanBanController::class, "updateProduct"])->name("product.update");
+    Route::delete("/product/delete", [KanBanController::class, "deleteProduct"])->name("product.delete");
+
+    Route::delete("/item/delete", [KanBanController::class, "deleteItem"])->name("item.delete");
+    Route::get("/item/edit/{item_id}", [KanBanController::class, "ItemForm"])->name("item.edit");
 });
 
 

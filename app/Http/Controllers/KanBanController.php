@@ -16,13 +16,15 @@ class KanBanController extends Controller
         $data = [];
 
 
-        $products = KanBanProductModel::all()
-            ->groupBy("kan_ban_item_model_id");
+        $products = KanBanProductModel::all()->groupBy("kan_ban_item_model_id");
+
         $costs = 0;
         $amountPaid = 0;
-        foreach ($products[1] as $product) {
-            $costs += ($product->amount * $product->cost);
-            $amountPaid += $product->amount_paid_for;
+        foreach ($products as $product) {
+            foreach ($product as $item) {
+                $costs += ($item->amount * $item->cost);
+                $amountPaid += $item->amount_paid_for;
+            }
         }
 
         $paymentOverview = [
@@ -92,11 +94,24 @@ class KanBanController extends Controller
     }
 
 
-    public function itemForm()
+    public function itemForm(int $item_id = 0)
     {
+        $itemData = [];
+        if ($item_id != 0) {
+            $item = KanBanItemModel::where("id", $item_id)->get()->first();
+
+            if (!$item) {
+                return redirect()->route('kanban.index')->with("error", "Item not found");
+            }
+
+            $products = KanBanProductModel::where("kan_ban_item_model_id", $item_id)->get();
+            $itemData = ["item" => $item, "products" => $products];
+        }
         $data = $this->get_global_data();
 
-        return view("kanban.create_item", $data);
+        $data = array_merge($data, $itemData);
+
+        return view("kanban.item_form", $data);
     }
 
     public function createItem(Request $request)
@@ -202,5 +217,72 @@ class KanBanController extends Controller
         return redirect()
             ->route("kanban.index")
             ->with("success", "Amount saved");
+    }
+
+    public function productForm(int $product_id = 0)
+    {
+        $productData = ["title" => "Create product"];
+        if ($product_id != 0) {
+            $product = KanBanProductModel::where("id", $product_id)->get()->first();
+            if (!$product) {
+                return redirect()
+                    ->route("kanban.index")
+                    ->with("error", "Product not found");
+            }
+
+            $productData = ["product_id" => $product->id, "name" => $product->name, "description" => $product->description, "cost" => $product->cost, "amount" => $product->amount, 'title' => "Edit product"];
+        }
+
+        $data =  $this->get_global_data();
+        $data = array_merge($data, $productData);
+
+        return view("kanban.product_form", compact("data"));
+    }
+
+    public function updateProduct(Request $request)
+    {
+        $validatedData = $request->validate([
+            "product_id" => "integer|required",
+            "title" => "required|string",
+            "description" => "required|string",
+            "cost" => "required|integer",
+            "amount" => "required|integer",
+        ]);
+
+        KanBanProductModel::where("id", $validatedData["product_id"])->update(["name" => $validatedData["title"], "description" => $validatedData["description"], "cost" => $validatedData["cost"], "amount" => $validatedData["amount"],]);
+
+        return redirect()
+            ->route("kanban.index")
+            ->with("success", "Product updated");
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        $product_id = (int) $request->product_id;
+
+        if (!isset($product_id)) {
+            return redirect()
+                ->route("kanban.index")
+                ->with("error", "No product id");
+        }
+
+        KanbanProductModel::where("id", $product_id)->delete();
+
+        return redirect()
+            ->route("kanban.index")
+            ->with('success', "Product deleted");
+    }
+
+    public function deleteItem(Request $request)
+    {
+        $item_id = (int) $request->item_id;
+
+        if (!isset($item_id)) {
+            return redirect()->route("kanban.index")->with("error", "No item id");
+        }
+
+        KanBanItemModel::where("id", $item_id)->delete();
+
+        return redirect()->route("kanban.index")->with('success', "Item deleted");
     }
 }

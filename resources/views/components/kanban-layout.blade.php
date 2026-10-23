@@ -7,6 +7,7 @@
     <title>{{ $title ?? 'Home' }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="{{ asset('svg/favicon.svg') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="min-h-screen bg-zinc-950 font-sans text-zinc-100 antialiased">
@@ -84,8 +85,8 @@
             </dl>
 
             {{-- Inline style is needed here: the width is calculated at runtime. --}}
-            <div class="h-1 bg-zinc-800" role="progressbar" aria-label="Betaald" aria-valuemin="0"
-                aria-valuemax="100" aria-valuenow="{{ $percentPaid }}">
+            <div class="h-1 bg-zinc-800" role="progressbar" aria-label="Betaald" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="{{ $percentPaid }}">
                 <div class="h-full transition-all {{ $isPaid ? 'bg-emerald-400' : 'bg-indigo-500' }}"
                     style="width: {{ $percentPaid }}%"></div>
             </div>
